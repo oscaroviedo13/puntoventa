@@ -219,35 +219,36 @@
                                         
                                     $nro_reg=mysql_num_rows($consulta);
 
-                                if ($nro_reg==0){
-                                        echo 'no se han encontrado productos para mostrar';
-                                }
+                                    if ($nro_reg==0){
+                                            echo 'no se han encontrado productos para mostrar';
+                                    }
 
-                                $reg_por_pagina=10;
-                                if (isset($_GET['num'])){
-                                        $nro_pagina=$_GET['num'];	
-                                }else{
-                                        $nro_pagina=1;
-                                }
-                                
-                                if (is_numeric($nro_pagina))
-                                        $inicio=(($nro_pagina-1)*$reg_por_pagina);
+                                    $reg_por_pagina=10;
+                                    if (isset($_GET['num'])){
+                                            $nro_pagina=$_GET['num'];	
+                                    }else{
+                                            $nro_pagina=1;
+                                    }
 
-                                else
+                                    if (is_numeric($nro_pagina)){
+                                            $inicio=(($nro_pagina-1)*$reg_por_pagina);
+                                    }
+                                    else{
                                         $inicio=0;
+                                    }
+                                    
+                                    $consulta=mysql_query("select * from productos order by nombre limit  $inicio,$reg_por_pagina",$conexion);
+                                    $can_paginas=ceil($nro_reg/$reg_por_pagina);
 
-                                        $consulta=mysql_query("select * from productos order by nombre limit  $inicio,$reg_por_pagina",$conexion);
-                                        $can_paginas=ceil($nro_reg/$reg_por_pagina);
-                                        
-                                        while($filas=mysql_fetch_array($consulta)){
-                                                $id=$filas['id'];
-                                                $nombre=$filas['nombre'];
-                                                $desc=$filas['descripcion'];
-                                                $precio=$filas['precio'];
-                                                $enStock=$filas['cuanto_hay'];
-                                                $fecha=$filas['fecha'];
-                                        
-                                       
+                                    while($filas=mysql_fetch_array($consulta)){
+                                            $id=$filas['id'];
+                                            $nombre=$filas['nombre'];
+                                            $desc=$filas['descripcion'];
+                                            $precio=$filas['precio'];
+                                            $enStock=$filas['cuanto_hay'];
+                                            $fecha=$filas['fecha'];
+
+
                                 ?>
                                 <tr>
 					<td><?php echo $id ?></td>
