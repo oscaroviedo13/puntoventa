@@ -1,0 +1,22 @@
+CREATE TABLE productos (
+ id INT NOT NULL AUTO_INCREMENT,
+ imagen varchar(100) null, 
+ nombre varchar(30) null,
+ descripcion varchar(100) null,
+ precio varchar(10) null,
+ cuanto_hay varchar(10) null,
+ fecha date null,
+ primary key(id)
+
+);
+
+CREATE TABLE usuarios (
+ id INT NOT NULL AUTO_INCREMENT,
+ nombre varchar(30) null,
+ usuario varchar(30),
+ pass varchar(30), 
+ permisos int(1),
+ imagen varchar(100) null,  
+ fecha date null,
+ primary key(id)
+);
