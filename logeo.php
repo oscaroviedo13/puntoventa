@@ -62,7 +62,7 @@
                         </tr>
                             <tr>
                                 <td>
-                                    <label for="pass">Clave:</label>
+                                    <label for="pass">Contraseña:</label>
                                 </td>
                                 <td>
                                     <input type="password" name="pass" value="12345" id="pass" class="login-inp" />
