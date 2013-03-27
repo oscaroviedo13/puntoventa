@@ -84,7 +84,7 @@
 	</div>
  	<!--  end login-inner -->
 	<div class="clear"></div>
-	<a href="" class="forgot-pwd">¿Olvido su contraseña?</a>
+	<a href="" class="forgot-pwd">¿Desea renovar su contraseña?</a>
  </div>
  <!--  end loginbox -->
  
