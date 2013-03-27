@@ -54,7 +54,7 @@
                       <table border="0" cellpadding="0" cellspacing="0">
                           <tr>
                                 <td>
-                                    <label for="user">Usuario:</label>
+                                    <label for="user">Nombre usuario:</label>
                                 </td>
                                 <td>
                                     <input type="text" name="user" value="osjavis" id="user" class="login-inp"/>
