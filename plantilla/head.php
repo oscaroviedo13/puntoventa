@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Punto de venta.</title>
+    <title>Punto de venta ING.</title>
     <head>
     <link href="<?php echo base_url('css/estilo.css')?>" rel="stylesheet">        
 </head>
