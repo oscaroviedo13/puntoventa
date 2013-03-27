@@ -169,6 +169,13 @@ $(document).ready(function(){
 $(document).pngFix( );
 });
 </script>
+
+    <script language="Javascript">
+    function abrir(pagina) {
+            window.open(pagina,'window','params');
+    }
+    </script>
+
 </head>
 <body> 
     <?php 
@@ -276,12 +283,12 @@ session_start();
 		
 		<div class="nav-divider">&nbsp;</div>
 		                    
-		<ul class="current"><li><a href="#nogo"><b>Products</b><!--[if IE 7]><!--></a><!--<![endif]-->
+		<ul class="current"><li><a href="#nogo"><b>Caja</b><!--[if IE 7]><!--></a><!--<![endif]-->
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
 		<div class="select_sub show">
 			<ul class="sub">
 				<li><a href="#nogo">View all products</a></li>
-				<li class="sub_show"><a href="#nogo">Add product</a></li>
+				<li class="sub_show"><a href="../caja/cajaventa.php" onclick="abrir(this.href);return false">Cargar caja</a></li>
 				<li><a href="#nogo">Delete products</a></li>
 			</ul>
 		</div>
