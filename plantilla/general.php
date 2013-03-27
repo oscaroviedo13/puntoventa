@@ -265,7 +265,7 @@ session_start();
 		<div class="select_sub">
 			<ul class="sub">
                             
-                                <li><a href="../productos/buscar2.php" target="CONTENIDO" >Listado de productos</a></li>
+                                <li><a href="../productos/articulos.php" target="CONTENIDO" >Listado de productos</a></li>
 				<li><a href="#nogo">Dashboard Details 2</a></li>
 				<li><a href="#nogo">Dashboard Details 3</a></li>
 			</ul>
