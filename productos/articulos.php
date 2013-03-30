@@ -223,7 +223,7 @@
                                             echo 'no se han encontrado productos para mostrar';
                                     }
 
-                                    $reg_por_pagina=10;
+                                    $reg_por_pagina=7;
                                     if (isset($_GET['num'])){
                                             $nro_pagina=$_GET['num'];	
                                     }else{
@@ -286,18 +286,18 @@
                             <?php 
 
                                     if($nro_pagina>1)
-                                            echo "<a href='buscar2.php?num=".($nro_pagina-1)."'>Anterior</a> ";
+                                            echo "<a href='articulos.php?num=".($nro_pagina-1)."'>Anterior</a> ";
 
                                     for ($i=1;$i<=$can_paginas;$i++){
                                             if ($i==$nro_pagina)
                                                     echo "<span>$i </span> ";
                                                     //echo $i."  ";
                                             else
-                                            echo "<a href='buscar2.php?num=$i'>$i</a> ";
+                                            echo "<a href='articulos.php?num=$i'>$i</a> ";
 
                                     }
                                     if($nro_pagina<$can_paginas)
-                                            echo "<a href='buscar2.php?num=".($nro_pagina+1)."'>Siguiente</a> ";
+                                            echo "<a href='articulos.php?num=".($nro_pagina+1)."'>Siguiente</a> ";
                             ?>
                             </div>
 			</td>			
