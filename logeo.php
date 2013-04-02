@@ -25,7 +25,9 @@
 
     <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="default" />
     <link rel="stylesheet" href="css/estilo.css" type="text/css" media="screen" title="default" />
-
+    <link rel="stylesheet" href="../css/smoke.css" type="text/css" media="screen" />
+    <script src="../js/smoke/smoke.min.js" type="text/javascript"></script>
+    <link id="theme" rel="stylesheet" href="../css/smoke/themes/dark.css" type="text/css" media="screen" />
 
     </head>
 
@@ -54,7 +56,7 @@
                       <table border="0" cellpadding="0" cellspacing="0">
                           <tr>
                                 <td>
-                                    <label for="user">Nombre usuario:</label>
+                                    <label for="user">Usuario:</label>
                                 </td>
                                 <td>
                                     <input type="text" name="user" value="osjavis" id="user" class="login-inp"/>

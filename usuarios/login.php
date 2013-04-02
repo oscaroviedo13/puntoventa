@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="../css/smoke.css" type="text/css" media="screen" />  <!--
 -->	<script src="../js/smoke/smoke.min.js" type="text/javascript"></script>
 	
-	<link id="theme" rel="stylesheet" href="../css/smoke/themes/default.css" type="text/css" media="screen" />
+	<link id="theme" rel="stylesheet" href="../css/smoke/themes/dark.css" type="text/css" media="screen" />
     </head>
     <body>
         <?php 
@@ -47,7 +47,9 @@
                         ?>
                         <html>
                             <head>
-        <!--                                <meta http-equiv="refresh" content="3; url= ../productos/buscar.php">   -->
+                                <script>
+                                    javascript:smoke.signal('Procesando peticion...');
+                                </script>
                                 <meta http-equiv="refresh" content="3; url= ../plantilla/general.php">   
                             </head>
                         </html>
