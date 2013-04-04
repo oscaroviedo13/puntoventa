@@ -25,9 +25,9 @@
 
     <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="default" />
     <link rel="stylesheet" href="css/estilo.css" type="text/css" media="screen" title="default" />
-    <link rel="stylesheet" href="../css/smoke.css" type="text/css" media="screen" />
-    <script src="../js/smoke/smoke.min.js" type="text/javascript"></script>
-    <link id="theme" rel="stylesheet" href="../css/smoke/themes/dark.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/smoke.css" type="text/css" media="screen" />
+    <script src="js/smoke/smoke.min.js" type="text/javascript"></script>
+    <link id="theme" rel="stylesheet" href="css/smoke/themes/dark.css" type="text/css" media="screen" />
 
     </head>
 

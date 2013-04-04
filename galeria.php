@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" href="../css/estilo.css" type="text/css" media="screen" title="default" />
+<link rel="stylesheet" href="css/estilo.css" type="text/css" media="screen" title="default" />
 </head>
 <body>
 <?php
 include('conexion.php');
-$consulta=mysql_query("select * from productos order by nombre",$conexion);
+$consulta=mysql_query("select * from productos order by id",$conexion);
 
 $nro_reg=mysql_num_rows($consulta);
 
@@ -30,7 +30,7 @@ if (is_numeric($nro_pagina))
 else
 	$inicio=0;
 
-	$consulta=mysql_query("select * from productos order by nombre limit  $inicio,$reg_por_pagina",$conexion);
+	$consulta=mysql_query("select * from productos order by id limit  $inicio,$reg_por_pagina",$conexion);
 	$can_paginas=ceil($nro_reg/$reg_por_pagina);
 ?>
 
@@ -49,9 +49,9 @@ else
                     $imagen=$filas['imagen'];
                     $nombre=$filas['nombre'];
                     $desc=$filas['descripcion'];
-                    $precio=$filas['precio'];
-                    $enStock=$filas['cuanto_hay'];
-                    $fecha=$filas['fecha'];
+                    $precio=$filas['precio_base'];
+                    $existencia=$filas['existencia'];
+                    $fecha=$filas['fecha_ingreso'];
 
             ?> 
             <td>

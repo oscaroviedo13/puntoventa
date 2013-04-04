@@ -139,7 +139,7 @@ td img {display: block;}body {
 			$nombre=$filas['nombre'];
 			$desc=$filas['descripcion'];
 			$precio=$filas['precio'];
-			$enStock=$filas['cuanto_hay'];
+			$existencia=$filas['cuanto_hay'];
 			$fecha=$filas['fecha'];
 			
          ?>
@@ -149,7 +149,7 @@ td img {display: block;}body {
       <td><?php echo $nombre ?></td>
       <td><?php echo $desc ?></td>
       <td><?php echo $precio ?></td>
-      <td><?php echo $enStock ?></td>
+      <td><?php echo $existencia ?></td>
       <td><?php echo $fecha ?></td>
       <td>
       <form action="carrito.php" method="post" name="compra">

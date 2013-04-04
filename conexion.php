@@ -137,22 +137,22 @@ function EncotrarReg($id)
 ?>
 
 <?php 
-function grabarCambios($id,$nom,$des,$precio,$cuanto_hay,$imagen,$fecha)
-{
+function grabarCambios($id,$nom,$des,$precio,$cuanto_hay,$imagen,$fecha){
+    $retorno = 0;
+    //Escribo en mi base de datos
+    if (isset($id)){
 
-//Escribo en mi base de datos
- if (isset($id))
-   {
-    $cad="UPDATE productos set nombre='$nom',
-	      descripcion='$des',
-		  precio='$precio',
-		  cuanto_hay='$cuanto_hay',
-		  imagen='$imagen',
-		  fecha='$fecha' where id=$id";
-    mysql_query($cad);
-	//echo $cad;
-	echo '<p>Registro Actualizado!</p>';
+        $cad="UPDATE productos set nombre='$nom',
+                  descripcion='$des',
+                      precio_base='$precio',
+                      existencia='$cuanto_hay',
+                      imagen='$imagen',
+                      fecha_ingreso='$fecha' where id=$id";
+
+        $retorno=mysql_query($cad);        
    }
+   
+   return $retorno;
 }
 
 function borrar($id)

@@ -2,16 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        
-<!--<link rel="stylesheet" href="smoke/smoke.css" type="text/css" media="screen" />  
-<script src="smoke/smoke.min.js" type="text/javascript"></script>
-
-<link id="theme" rel="stylesheet" href="smoke/themes/default.css" type="text/css" media="screen" />-->
-        
-        
-	<link rel="stylesheet" href="../css/smoke.css" type="text/css" media="screen" />  <!--
--->	<script src="../js/smoke/smoke.min.js" type="text/javascript"></script>
-	
+	<link rel="stylesheet" href="../css/smoke.css" type="text/css" media="screen" /> 
+        <script src="../js/smoke/smoke.min.js" type="text/javascript"></script>	
 	<link id="theme" rel="stylesheet" href="../css/smoke/themes/dark.css" type="text/css" media="screen" />
     </head>
     <body>
@@ -21,16 +13,16 @@
             $passIng=$_POST['pass'];
 
             session_start();
-            $consulta=mysql_query("select * from usuarios");
+            $consulta=mysql_query("select * from usuario");
             $puerta='continuar';	
             while($filas=mysql_fetch_array($consulta)and $puerta='continuar'){
 
                 $id=$filas['id'];
                 $nombre=$filas['nombre'];
-                $usuario=$filas['usuario'];
-                $pass=$filas['pass'];
-                $permiso=$filas['permisos'];
-                $fecha=$filas['fecha'];
+                $usuario=$filas['login'];
+                $pass=$filas['password'];
+                $id_perfil=$filas['id_perfil'];
+                $fecha=$filas['fecha_creacion'];
 
 
                 if (isset($usuarioIng)and isset($passIng)){
@@ -41,9 +33,10 @@
                                         'usuario'=>$usuario,
                                         'pass'=>$pass,
                                         'fecha'=>$fecha,
-                                        'permiso'=>$permiso);
+                                        'permiso'=>$id_perfil);
                         //ir a la pagina restringida
                         $_SESSION['miSession']=$miSession;
+                        $_SESSION['contadorSession']=1;
                         ?>
                         <html>
                             <head>

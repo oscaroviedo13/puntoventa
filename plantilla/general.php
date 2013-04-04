@@ -1,6 +1,18 @@
+<?php 
+session_start();
+
+//if($_SESSION["contadorSession"] == 0){
+if(!isset($_SESSION["contadorSession"])){
+    ?>
+    <meta http-equiv="refresh" content="1; url= ../boton.html">  
+    <?php
+}
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Punto de Venta.</title>
 <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default" />
@@ -178,9 +190,7 @@ $(document).pngFix( );
 
 </head>
 <body> 
-    <?php 
-session_start();
-?>
+
 <!-- Start: page-top-outer -->
 <div id="page-top-outer">    
 
@@ -235,7 +245,7 @@ session_start();
                         <div class="nav-divider">&nbsp;</div>
                         <div class="showhide-account"><img src="../images/shared/nav/nav_myaccount.gif" width="93" height="14" alt="" /></div>
                         <div class="nav-divider">&nbsp;</div>
-			<a href="" id="logout"><img src="../images/shared/nav/nav_logout.gif" width="64" height="14" alt="" /></a>
+			<a href="../usuarios/logout.php" id="logout"><img src="../images/shared/nav/nav_logout.gif" width="64" height="14" alt="" /></a>
 			<div class="clear">&nbsp;</div>
 		
 			<!--  start account-content -->	
@@ -273,6 +283,7 @@ session_start();
 			<ul class="sub">
                             
                                 <li><a href="../productos/articulos.php" target="CONTENIDO" >Listado de productos</a></li>
+                                <li><a href="../galeria.php" target="CONTENIDO" >Galeria de productos</a></li>
 				<li><a href="#nogo">Dashboard Details 2</a></li>
 				<li><a href="#nogo">Dashboard Details 3</a></li>
 			</ul>
@@ -387,13 +398,13 @@ session_start();
 			<h3>Local Heading</h3>
 			-->
 			
-                        <iframe src="../galeria.php" name="CONTENIDO" width="100%" height="600"  scrolling="auto" frameborder="0"  />
+                        <iframe class="cajaSola" src="../galeria.php" name="CONTENIDO" width="100%" height="600"  scrolling="auto" frameborder="0"  />
 				
 			
 			</div>
 			<!--  end table-content  -->
 	
-			<div class="clear"></div>
+<!--			<div class="clear"></div>-->
 		 
 		</div>
 		<!--  end content-table-inner ............................................END  -->

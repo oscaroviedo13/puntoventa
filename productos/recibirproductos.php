@@ -14,7 +14,7 @@ $nombre=$_POST['nombre'];
 $precio=$_POST['precio'];
 
 $desc=$_POST['descripcion'];
-$enStock=$_POST['enStock'];
+$existencia=$_POST['enStock'];
 $fecha=$_POST['fecha'];
 
 
@@ -24,7 +24,7 @@ $sql="INSERT INTO productos (imagen,nombre,descripcion,precio,cuanto_hay,fecha)
 	  '".$nombre."',
 	  '".$desc."',
 	  '".$precio."',
-	  '".$enStock."',
+	  '".$existencia."',
 	  '".$fecha."')";
 	  
 $res=mysql_query($sql,$conexion);

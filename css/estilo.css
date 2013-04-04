@@ -8,7 +8,7 @@ span{ margin-right:4px;
 	 
 	
 	display: inline-block;
-    zoom: 2;
+    zoom: 1,8;
     display: inline;
     vertical-align: baseline;
    
@@ -25,7 +25,7 @@ span{ margin-right:4px;
 	}
 #paginador a{
 	display: inline-block;
-    zoom: 2;
+    zoom: 1,8;
     display: inline;
     vertical-align: baseline;
     cursor: pointer;
@@ -119,12 +119,14 @@ float:right;
      background:white;
 	 float:left;
 	 width:250px;
-	 height:400px;
+	 height:auto;
 	 text-align:center;
 	 border:1px solid #E2E2E2;
 	 border-radius:10px;
 	 font-family:arial;
 }
+
+
 .cajaDes{
      background:white;
 	 float:left;
@@ -151,7 +153,7 @@ float:right;
 
 .boton {
     display: inline-block;
-    zoom: 2;
+    zoom: 1,8;
     display: inline;
     vertical-align: baseline;
     cursor: pointer;
@@ -203,4 +205,4 @@ float:right;
 	 font-family:arial;*/
 	
 }
-/* usar el boton <a href="#" class="boton negro redondo">Comprar</a>*/
+
