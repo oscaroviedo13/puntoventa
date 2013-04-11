@@ -28,7 +28,28 @@
 		<td>
 		<!--  start content-table-inner ...................................................................... START -->
 		<div id="content-table-inner">
-		
+			<div align="center">
+            <table border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                <td><input type="text" value="Search" onblur="if (this.value=='') { this.value='Search'; }" onfocus="if (this.value=='Search') { this.value=''; }" class="top-search-inp" /></td>
+                <td></td>
+				<td>
+                <select  class="styledselect">
+                    <option value=""> All</option>
+                    <option value=""> Products</option>
+                    <option value=""> Categories</option>
+                    <option value="">Clients</option>
+                    <option value="">News</option>
+                </select> 
+                </td>
+                <td>
+                <input type="image" src="../images/shared/top_search_btn.gif"  />
+                </td>
+                </tr>
+              </table>
+
+            </div>
+			<div style="height:20px"></div>
 			<!--  start table-content  -->
 			<div id="table-content">
 			
@@ -43,31 +64,16 @@
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Id</a></th>
 					<th class="table-header-repeat line-left minwidth-2"><a href="">Nombre</a></th>
 					<th class="table-header-repeat line-left"><a href="">Descripcion</a></th>
+                                        <th class="table-header-repeat line-left"><a href="">Tipo<br>Producto</a></th>
 					<th class="table-header-repeat line-left"><a href="">Precio</a></th>
+					<th class="table-header-repeat line-left"><a href="">Iva(%)</a></th>
 					<th class="table-header-repeat line-left"><a href="">Existencia</a></th>
-					<th class="table-header-repeat line-left"><a href="">Fecha</a></th>
+					<th class="table-header-repeat line-left"><a href="">Stock</a></th>
+					<th class="table-header-repeat line-left"><a href="">Ultima Modificacion</a></th>
 					<th class="table-header-repeat line-left minwidth-option"><a href="">Opciones</a></th>
 				</tr>
                                 <?php 
-                                    $consulta=mysql_query("SELECT 
-                                                            productos.id,
-                                                            productos.imagen,
-                                                            productos.nombre,
-                                                            productos.descripcion,
-                                                            tipo_producto.id_tipo_pro,
-                                                            tipo_producto.descripcion_tipo_pro,
-                                                            productos.precio_base,
-                                                            productos.existencia,
-                                                            productos.fecha_ingreso,
-                                                            productos.iva,
-                                                            productos.id_unidad,
-                                                            unidad.descripcion_unidad,
-                                                            unidad.convencion_unidad
-                                                            FROM
-                                                            tipo_producto
-                                                            INNER JOIN productos ON (tipo_producto.id_tipo_pro = productos.id_tipo_pro)
-                                                            INNER JOIN unidad ON (productos.id_unidad = unidad.id_unidad) ORDER BY productos.id
-                                        ");
+                                    $consulta=mysql_query("SELECT * FROM view_informacion_producto");
                                     
                                     if (isset($_POST['buscar'])){
                                             $consulta=mysql_query("select7 * from productos where nombre like '%".$_POST['buscar']."%'");
@@ -94,24 +100,7 @@
                                     }
                                     
 //                                    $consulta=mysql_query("select * from view_informacion_producto order by id limit  $inicio,$reg_por_pagina",$conexion);
-                                    $consulta=mysql_query("SELECT 
-                                                            productos.id,
-                                                            productos.imagen,
-                                                            productos.nombre,
-                                                            productos.descripcion,
-                                                            tipo_producto.id_tipo_pro,
-                                                            tipo_producto.descripcion_tipo_pro,
-                                                            productos.precio_base,
-                                                            productos.existencia,
-                                                            productos.fecha_ingreso,
-                                                            productos.iva,
-                                                            productos.id_unidad,
-                                                            unidad.descripcion_unidad,
-                                                            unidad.convencion_unidad
-                                                            FROM
-                                                            tipo_producto
-                                                            INNER JOIN productos ON (tipo_producto.id_tipo_pro = productos.id_tipo_pro)
-                                                            INNER JOIN unidad ON (productos.id_unidad = unidad.id_unidad) ORDER BY productos.id limit  $inicio,$reg_por_pagina",$conexion);
+                                    $consulta=mysql_query("SELECT * FROM view_informacion_producto limit  $inicio,$reg_por_pagina",$conexion);
                                     $can_paginas=ceil($nro_reg/$reg_por_pagina);
 
                                     while($filas=mysql_fetch_array($consulta)){
@@ -119,9 +108,16 @@
                                             $nombre=$filas['nombre'];
                                             $desc=$filas['descripcion'];
                                             $precio=$filas['precio_base'];
+                                            $iva=$filas['iva'];
                                             $existencia=$filas['existencia'];
+                                            $stock=$filas['stock_minimo'];
                                             $fecha=$filas['fecha_ingreso'];
                                             $imagen=$filas['imagen'];
+                                            $id_tipo_pro=$filas['id_tipo_pro'];
+                                            $id_unidad=$filas['id_unidad'];
+                                            $desc_unidad=$filas['descripcion_unidad'];
+                                            $conv_unidad2=$filas['convencion_unidad'];
+                                            $descripcion_tipo_pro=$filas['descripcion_tipo_pro'];
 
 
                                 ?>
@@ -130,37 +126,48 @@
 					<td><?php echo $id ?></td>
 					<td><?php echo $nombre ?></td>
 					<td><?php echo $desc ?></td>
+					<td><?php echo $descripcion_tipo_pro ?></td>
 					<td>
                                             <div style="float: left">$&nbsp;&nbsp;&nbsp;</div>
-                                            <div style="float: center"><?php echo $precio?></div>
-                                        </td>
+                                            <div style="float: center"><?php echo $precio?></div>                                        </td>
+					<td><?php echo $iva ?></td>
 					<td><?php echo $existencia ?></td>
+					<td><?php echo $stock ?></td>
 					<td><?php echo $fecha ?></td>
 					<td class="options-width">
-                                            
-					<form action="editar.php" method="post" name="edita">
-                                            <input name="id2" type="hidden" value="<?php echo $id ?>" />   
-                                            <input name="imagen2" type="hidden" value="<?php echo $imagen ?>" />   
-                                            <input name="nombre2" type="hidden" value="<?php echo $nombre ?>" />   
-                                            <input name="desc2" type="hidden" value="<?php echo $desc ?>" />   
-                                            <input name="existencia2" type="hidden" value="<?php echo $existencia ?>" />   
-                                            <input name="precio2" type="hidden" value="<?php echo $precio ?>" />   
-                                            <input name="fecha2" type="hidden" value="<?php echo $fecha ?>" />   
-                                            
-                                            <input type="submit" class="boton negro redondo" value="Editar" />
-                                                                                           
-<!--                                            <a title="Modificar" onclick="document.forms['edita'].submit();" class="icon-1 info-tooltip"></a>    -->
-                                        </form>
-                                         
-<!--                                         <a href="editar.php" title="Edit" class="icon-2 info-tooltip"></a>
-					<a href="" title="Edit" class="icon-3 info-tooltip"></a>
-					<a href="" title="Edit" class="icon-4 info-tooltip"></a>
-					<a href="" title="Edit" class="icon-5 info-tooltip"></a>-->
-					</td>
-                                    
+                                            <div style="float:left">                   
+                                                <form action="editar.php" method="post" name="edita">
+                                                    <input name="id2" type="hidden" value="<?php echo $id ?>" />   
+                                                    <input name="imagen2" type="hidden" value="<?php echo $imagen ?>" />   
+                                                    <input name="nombre2" type="hidden" value="<?php echo $nombre ?>" />   
+                                                    <input name="desc2" type="hidden" value="<?php echo $desc ?>" />   
+                                                    <input name="id_tipo_pro2" type="hidden" value="<?php echo $id_tipo_pro ?>" />   
+                                                    <input name="descripcion_tipo_pro2" type="hidden" value="<?php echo $descripcion_tipo_pro ?>" />   
+                                                    <input name="existencia2" type="hidden" value="<?php echo $existencia ?>" />   
+                                                    <input name="stock2" type="hidden" value="<?php echo $stock ?>" />   
+                                                    <input name="precio2" type="hidden" value="<?php echo $precio ?>" />   
+                                                    <input name="iva2" type="hidden" value="<?php echo $iva ?>" />   
+                                                    <input name="fecha2" type="hidden" value="<?php echo $fecha ?>" />   
+                                                    <input name="id_unidad2" type="hidden" value="<?php echo $id_unidad ?>" />   
+                                                    <input name="desc_unidad2" type="hidden" value="<?php echo $desc_unidad ?>" />   
+                                                    <input name="conv_unidad2" type="hidden" value="<?php echo $conv_unidad2 ?>" />   
+
+                                                    <input type="submit" class="boton negro redondo" value="Editar" />
+
+        <!--                                            <a title="Modificar" onclick="document.forms['edita'].submit();" class="icon-1 info-tooltip"></a>    -->
+
+                                                </form>
+                                            </div>
+
+                                            <div style="float:center">
+                                                <form action="../detalle.php" method="post" name="detalle">
+                                                        <input name="id" type="hidden" value="<?php echo $id ?>" />
+                                                        <input name="submit" type="submit" class="boton negro redondo" value="Detalle" />
+                                                </form>
+                                            </div>
+    					</td>
 				</tr>
 				<?php }?>	
-                                    
 				</table>
 				<!--  end product-table................................... --> 
 				<!--</form>-->
@@ -199,11 +206,15 @@
 			</table>
 			<!--  end paging................ -->
 			
-			<div class="clear"></div>
+                        <form action="crear.php" method="post" name="crea">
+                            <div class="clear">
+                                    <input type="submit" class="boton negro redondo" value="Crear Nuevo Producto" />
+                            </div>
+                        </form>
 		 
 		</div>
 		<!--  end content-table-inner ............................................END  -->
-		</td>
+	  </td>
 		<td id="tbl-border-right"></td>
 	</tr>
 	<tr>

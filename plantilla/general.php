@@ -1,12 +1,13 @@
 <?php 
 session_start();
+$NombreMenu = "Seleccione la opcion deseada.";
 
 //if($_SESSION["contadorSession"] == 0){
 if(!isset($_SESSION["contadorSession"])){
     ?>
     <meta http-equiv="refresh" content="1; url= ../boton.html">  
     <?php
-}
+}else{
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -14,6 +15,7 @@ if(!isset($_SESSION["contadorSession"])){
 <head>
     
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="../Swf.ico" type="image/x-icon" rel="shortcut icon" />
 <title>Punto de Venta.</title>
 <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default" />
 <!--[if IE]>
@@ -199,15 +201,14 @@ $(document).pngFix( );
 
 	<!-- start logo -->
 	<div id="logo">
-	<a href=""><img src="../images/shared/logo.png" width="156" height="40" alt="" /></a>
-	</div>
+	<a href=""><img src="../images/icons/cart_icon.png" width="40" height="40" alt="" /></a>	</div>
 	<!-- end logo -->
 	
 	<!--  start top-search -->
 	<div id="top-search">
 		<table border="0" cellpadding="0" cellspacing="0">
 		<tr>
-		<td><input type="text" value="Search" onblur="if (this.value=='') { this.value='Search'; }" onfocus="if (this.value=='Search') { this.value=''; }" class="top-search-inp" /></td>
+		<td><input type="text" value="Search" onBlur="if (this.value=='') { this.value='Search'; }" onFocus="if (this.value=='Search') { this.value=''; }" class="top-search-inp" /></td>
 		<td>
 		<select  class="styledselect">
 			<option value=""> All</option>
@@ -284,8 +285,8 @@ $(document).pngFix( );
                             
                                 <li><a href="../productos/articulos.php" target="CONTENIDO" >Listado de productos</a></li>
                                 <li><a href="../galeria.php" target="CONTENIDO" >Galeria de productos</a></li>
-				<li><a href="#nogo">Dashboard Details 2</a></li>
-				<li><a href="#nogo">Dashboard Details 3</a></li>
+				<li><a href="#nogo">Ingresar Producto</a></li>
+				<!--<li><a href="#nogo">Dashboard Details 3</a></li>-->
 			</ul>
 		</div>
 		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
@@ -298,9 +299,9 @@ $(document).pngFix( );
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
 		<div class="select_sub show">
 			<ul class="sub">
-				<li><a href="#nogo">View all products</a></li>
-				<li class="sub_show"><a href="../caja/cajaventa.php" onclick="abrir(this.href);return false">Cargar caja</a></li>
-				<li><a href="#nogo">Delete products</a></li>
+                            <li class="sub_show"><a href="../caja/cajaventa.php" onClick="abrir(this.href);return false">Cargar caja</a></li>
+                            <li><a href="#nogo">Imprimir Factura.</a></li>
+                            <!--<li><a href="#nogo">Delete products</a></li>-->
 			</ul>
 		</div>
 		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
@@ -309,13 +310,13 @@ $(document).pngFix( );
 		
 		<div class="nav-divider">&nbsp;</div>
 		
-		<ul class="select"><li><a href="#nogo"><b>Categories</b><!--[if IE 7]><!--></a><!--<![endif]-->
+		<ul class="select"><li><a href="#nogo"><b>Inventario</b><!--[if IE 7]><!--></a><!--<![endif]-->
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
 		<div class="select_sub">
 			<ul class="sub">
-				<li><a href="#nogo">Categories Details 1</a></li>
-				<li><a href="#nogo">Categories Details 2</a></li>
-				<li><a href="#nogo">Categories Details 3</a></li>
+				<li><a href="#nogo">Ingresar Existencia</a></li>
+				<li><a href="#nogo">Movimiento Bodega</a></li>
+				<!--<li><a href="#nogo"></a></li>-->
 			</ul>
 		</div>
 		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
@@ -324,11 +325,11 @@ $(document).pngFix( );
 		
 		<div class="nav-divider">&nbsp;</div>
 		
-		<ul class="select"><li><a href="#nogo"><b>Salir</b><!--[if IE 7]><!--></a><!--<![endif]-->
+		<ul class="select"><li><a href="#nogo"><b>Maestros</b><!--[if IE 7]><!--></a><!--<![endif]-->
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
 		<div class="select_sub">
 			<ul class="sub">
-				<li><a href="#nogo">Clients Details 1</a></li>
+				<li><a href="#nogo">Tipo Producto.</a></li>
 				<li><a href="#nogo">Clients Details 2</a></li>
 				<li><a href="#nogo">Clients Details 3</a></li>
 			 
@@ -340,7 +341,22 @@ $(document).pngFix( );
 		
 		<div class="nav-divider">&nbsp;</div>
 		
-		<ul class="select"><li><a href="#nogo"><b>News</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                <ul class="select"><li><a href="#nogo"><b>Cuentas</b><!--[if IE 7]><!--></a><!--<![endif]-->
+		<!--[if lte IE 6]><table><tr><td><![endif]-->
+		<div class="select_sub">
+			<ul class="sub">
+				<li><a href="#nogo">Ingresar Usuario.</a></li>
+				<li><a href="#nogo">Reporte Usuarios.</a></li>
+				<li><a href="#nogo">Movimiento Usuarios.</a></li>
+			</ul>
+		</div>
+		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+		</li>
+		</ul>
+                
+                <div class="nav-divider">&nbsp;</div>
+		
+                <ul class="select"><li><a href="#nogo"><b>Auditoria</b><!--[if IE 7]><!--></a><!--<![endif]-->
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
 		<div class="select_sub">
 			<ul class="sub">
@@ -374,7 +390,7 @@ $(document).pngFix( );
 
 	<!--  start page-heading -->
 	<div id="page-heading">
-		<h1>Add product</h1>
+		<h1><?php echo $NombreMenu ?></h1>
 	</div>
 	<!-- end page-heading -->
 
@@ -398,7 +414,7 @@ $(document).pngFix( );
 			<h3>Local Heading</h3>
 			-->
 			
-                        <iframe class="cajaSola" src="../galeria.php" name="CONTENIDO" width="100%" height="600"  scrolling="auto" frameborder="0"  />
+                        <iframe src="../galeria.php" name="CONTENIDO" width="100%" height="600"  scrolling="auto" frameborder="0"  />
 				
 			
 			</div>
@@ -440,3 +456,7 @@ $(document).pngFix( );
  
 </body>
 </html>
+
+ <?php
+}
+?>

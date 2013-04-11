@@ -7,24 +7,7 @@
     
 <?php
 include('conexion.php');
-$consulta=mysql_query("SELECT 
-                                                            productos.id,
-                                                            productos.imagen,
-                                                            productos.nombre,
-                                                            productos.descripcion,
-                                                            tipo_producto.id_tipo_pro,
-                                                            tipo_producto.descripcion_tipo_pro,
-                                                            productos.precio_base,
-                                                            productos.existencia,
-                                                            productos.fecha_ingreso,
-                                                            productos.iva,
-                                                            productos.id_unidad,
-                                                            unidad.descripcion_unidad,
-                                                            unidad.convencion_unidad
-                                                            FROM
-                                                            tipo_producto
-                                                            INNER JOIN productos ON (tipo_producto.id_tipo_pro = productos.id_tipo_pro)
-                                                            INNER JOIN unidad ON (productos.id_unidad = unidad.id_unidad) where productos.id=".$_POST['id']);
+$consulta=mysql_query("SELECT * FROM view_informacion_producto where view_informacion_producto.id=".$_POST['id']);
 	
 ?>
 <?php include('plantilla/head.php');?>
@@ -41,6 +24,7 @@ $consulta=mysql_query("SELECT
 		$iva=$filas['iva'];
 		$descripcionUnidad=$filas['descripcion_unidad'];
 		$convencionUnidad=$filas['convencion_unidad'];
+		$descripcionTipo=$filas['descripcion_tipo_pro'];
 	
 	?> 
 	<div class="cajaSola">
@@ -58,20 +42,43 @@ $consulta=mysql_query("SELECT
 		
 	</div>
 	<div class="cajaDes">
-	    <p><h3>Descripción.</h3></p>
-		<p><?php echo $desc?></p>
             
-            <p><h3>Precio base.</h3></p>
-		<p><?php echo "$".$precio?></p>
-		
-            <p><h3>Existencia en inventario.</h3></p>
-		<p><?php echo $existencia?></p>
-                
-            <p><h3>Iva</h3></p>
-		<p><?php echo $iva. "%"?></p>
-                
-            <p><h3>Unidad de medida.</h3></p>
-		<p><?php echo $descripcionUnidad." (".$convencionUnidad.")." ?></p>
+        <table width="500" border="0" cellspacing="1" cellpadding="1">
+		  <tr>
+			<td>
+                            <p><h3>Descripción.</h3></p>
+                                <p><?php echo $desc?></p>
+                        </td>
+			<td>
+                            <p><h3>Unidad de medida.</h3></p>
+                                <p><?php echo $descripcionUnidad." (".$convencionUnidad.")." ?></p>
+                        </td>
+		  </tr>
+		  <tr>
+			<td>
+                            <p><h3>Precio base.</h3></p>
+                                <p><?php echo "$".$precio?></p>
+                        </td>
+			<td>
+                            <p><h3>Categoria Producto.</h3></p>
+                                <p><?php echo $descripcionTipo ?></p>
+                        </td>
+		  </tr>
+		  <tr>
+			<td>
+                            <p><h3>Existencia en inventario.</h3></p>
+                                <p><?php echo $existencia?></p>
+                        </td>
+			<td>&nbsp;</td>
+		  </tr>
+		  <tr>
+			<td>
+                            <p><h3>Iva</h3></p>
+                                <p><?php echo $iva. "%"?></p>
+                        </td>
+			<td>&nbsp;</td>
+		  </tr>
+		</table>            
 	</div>
 	
 	<?php

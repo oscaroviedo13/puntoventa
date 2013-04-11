@@ -11,29 +11,48 @@
             include ('../conexion.php');
             $usuarioIng=$_POST['user'];
             $passIng=$_POST['pass'];
-
+            
+            $consultaMD5=mysql_query("SELECT md5('$passIng') as clavemd5");
+            
+            while($filasMD5=mysql_fetch_array($consultaMD5)){
+                $passIng = $filasMD5['clavemd5'];                
+            }
+            
+            
+            
             session_start();
-            $consulta=mysql_query("select * from usuario");
+            $consultaGeneral=mysql_query("select * from view_inicio_sesion");
+            
+            //MD5
+            
             $puerta='continuar';	
-            while($filas=mysql_fetch_array($consulta)and $puerta='continuar'){
+            while($filas=mysql_fetch_array($consultaGeneral)and $puerta='continuar'){
 
                 $id=$filas['id'];
                 $nombre=$filas['nombre'];
                 $usuario=$filas['login'];
-                $pass=$filas['password'];
-                $id_perfil=$filas['id_perfil'];
-                $fecha=$filas['fecha_creacion'];
+                $pass=$filas['pwd'];
+                $id_localidad=$filas['id_localidad'];
+                $nombre_localidad=$filas['nombre_localidad'];
+                $id_comuna=$filas['id_comuna'];
+                $nombre_comuna=$filas['nombre_comuna'];
+                $fecha=$filas['fecha_creacion_usuario'];
+                $fecha=$filas['fecha_creacion_contrasena'];
 
 
                 if (isset($usuarioIng)and isset($passIng)){
-                    if ($usuario==$usuarioIng and $pass==$passIng){
-                        //echo 'bienvenido '.$nombre;
+//                    echo $pass.'-'.$passIng;
+                    if ($usuario==$usuarioIng and $passIng == $pass){
+                        
                         $miSession=array('id'=>$id,
                                         'nombre'=>$nombre,
                                         'usuario'=>$usuario,
                                         'pass'=>$pass,
                                         'fecha'=>$fecha,
-                                        'permiso'=>$id_perfil);
+                                        'id_comuna'=>$id_comuna,
+                                        'nombre_comuna'=>$nombre_comuna,
+                                        'nombre_localidad'=>$nombre_localidad,
+                                        'id_localidad'=>$id_localidad);
                         //ir a la pagina restringida
                         $_SESSION['miSession']=$miSession;
                         $_SESSION['contadorSession']=1;
@@ -56,14 +75,13 @@
             }
 
             if ($resutado=='no'){
-                
 //                echo 'su usuario o contraseÃ±a no se encontraron.';
                         ?>
                 <html>
                     <head>
                         <meta http-equiv="refresh" content="3; url= ../logeo.php">   
                         <script>
-                        javascript:smoke.alert('Contraseña o usuario incorrecto.');
+                        javascript:smoke.alert('Contraseña o usuario incorrecto. ');
                         </script>
                         
                     </head>

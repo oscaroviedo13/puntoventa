@@ -93,7 +93,8 @@ float:right;
      background:white;
 	  /*width:608px;*/
 	 width:800px;
-	 height:504px;
+/*	 height:504px;*/
+	 height:100%;
 	 margin:auto;
 	 margin-top:20px;
          text-align: center;

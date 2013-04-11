@@ -2,6 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link href="Swf.ico" type="image/x-icon" rel="shortcut icon" />
     <title>Punto de venta.</title>
 
 <!--    <style type="text/css">
@@ -67,13 +69,11 @@
                                     <label for="pass">Contraseña:</label>
                                 </td>
                                 <td>
-                                    <input type="password" name="pass" value="12345" id="pass" class="login-inp" />
+                                    <input type="password" name="pass" value="1234" id="pass" class="login-inp" />
                                 </td>
                             </tr>
                             <tr>
-								<td>
-								
-								</td>
+								<td><img src="/puntoventa/images/icons/cart_icon.png" alt="" width="48" height="48" />								</td>
                                 <td align="right">
 <!--                                <p><input type="submit" name="button" id="button" value="Entrar" class="submit-login"/></p>-->
                                 <p><input class="boton negro redondo" name="button" type="submit" value="Ingresar"></p>

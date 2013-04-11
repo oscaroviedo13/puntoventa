@@ -137,17 +137,18 @@ function EncotrarReg($id)
 ?>
 
 <?php 
-function grabarCambios($id,$nom,$des,$precio,$cuanto_hay,$imagen,$fecha){
+function grabarCambios($idProducto,$nombreProducto,$descripcionProducto,$precioBase,$imagen, $id_tipo_pro, $id_unidad){
     $retorno = 0;
     //Escribo en mi base de datos
-    if (isset($id)){
+    if (isset($idProducto)){
 
-        $cad="UPDATE productos set nombre='$nom',
-                  descripcion='$des',
-                      precio_base='$precio',
-                      existencia='$cuanto_hay',
+        $cad="UPDATE productos set nombre='$nombreProducto',
+                  descripcion='$descripcionProducto',
+                      precio_base='$precioBase',
                       imagen='$imagen',
-                      fecha_ingreso='$fecha' where id=$id";
+                      id_unidad='$id_unidad',
+                      id_tipo_pro='$id_tipo_pro' 
+                      WHERE id=$idProducto";
 
         $retorno=mysql_query($cad);        
    }
@@ -162,7 +163,32 @@ function borrar($id)
 	echo 'Registro eliminado con exito!';
 }
 
+function modificarProducto($idProducto,$nombreProducto,$descripcionProducto,$precioBase,$imagen, $iva, $stock, $id_tipo_pro, $id_unidad){
+    $retorno = 0;
+    //Escribo en mi base de datos
+    if (isset($idProducto)){
 
+        $cad="CALL proc_modificar_producto($idProducto, '$nombreProducto', '$descripcionProducto', $id_tipo_pro, $id_unidad, $precioBase, $iva, $stock, '$imagen');";
+
+        $retorno=mysql_query($cad);        
+   }
+   
+   return $retorno;
+}
+
+function crearProducto($imagenProducto,$nombreProducto,$descripcionProducto,$precioBase,$id_tipo_pro, $iva, $id_unidad, $stock){
+    $retorno = 0;
+    //Escribo en mi base de datos
+    if (isset($imagenProducto)){
+
+        $cad="CALL proc_crear_producto('$imagenProducto', '$nombreProducto', '$descripcionProducto', $precioBase, $id_tipo_pro, $iva, $id_unidad, $stock);";
+        
+        $retorno=mysql_query($cad);        
+   }
+   
+   return $retorno;
+
+}
 
 
 
