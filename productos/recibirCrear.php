@@ -29,12 +29,13 @@ for ($index = 0; $index < count($id_unidadArray); $index++) {
     $id_unidad = $id_unidadArray[$index];
 }
 
-//$rutaEnServidor='imagenes';
-//$rutaTemporal=$_FILES['imagen2']['tmp_name'];
-//$nombreImagen=$_FILES['imagen2']['name'];
-//$rutaDestino=$rutaEnServidor.'/'.$id.".jpg";
-//
-//echo $rutaDestino;
+$rutaEnServidor='imagenes';
+$rutaTemporal=$_FILES['imagen2']['tmp_name'];
+$nombreImagen=$_FILES['imagen2']['name'];
+$rutaDestino=$rutaEnServidor.'/'.$nombreImagen;
+//echo 'ruta temporal :'.$rutaTemporal.'<br>';
+//echo 'ruta Destino :'.$rutaDestino.'<br>';
+move_uploaded_file($rutaTemporal,'../'.$rutaDestino);
 
 //if ($_FILES['imagen2']['name']<>""){
 //    //echo 'intento cambiar la imagen';
@@ -47,9 +48,8 @@ for ($index = 0; $index < count($id_unidadArray); $index++) {
 //    //$a=grabarCambios($id,$nombre,$desc,$precio,$existencia,$rutaDestino,$fecha,$descripcion_tipo_pro);
 //}
 
-$a= crearProducto("Oscar.jpg",$nombre,$desc,$precio,$descripcion_tipo_pro,$iva,$id_unidad,$stock);
-echo "<br>";
-echo $a;
+$a= crearProducto($rutaDestino,$nombre,$desc,$precio,$descripcion_tipo_pro,$iva,$id_unidad,$stock);
+
 if($a != 1){
 ?>
     <script>
