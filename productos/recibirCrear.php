@@ -68,7 +68,7 @@ else {
 ?>
 
 
-<!--       	<meta http-equiv="refresh" content="1; url= ../galeria.php">   -->
+       	<meta http-equiv="refresh" content="1; url= ../galeria.php">   
     </body>  
 </html>
 

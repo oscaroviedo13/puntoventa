@@ -31,6 +31,16 @@
     <script src="js/smoke/smoke.min.js" type="text/javascript"></script>
     <link id="theme" rel="stylesheet" href="css/smoke/themes/dark.css" type="text/css" media="screen" />
 
+    <script type="text/javascript">
+        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+        d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+        $.src='//cdn.zopim.com/?190bir6INMNTWbmrwTGUuPc88imSHbVW';z.t=+new Date;$.
+        type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+    </script>
+
+    
+    
     </head>
 
     
@@ -73,7 +83,7 @@
                                 </td>
                             </tr>
                             <tr>
-								<td><img src="/puntoventa/images/icons/cart_icon.png" alt="" width="48" height="48" />								</td>
+								<td><img src="images/icons/cart_icon.png" alt="" width="48" height="48" />								</td>
                                 <td align="right">
 <!--                                <p><input type="submit" name="button" id="button" value="Entrar" class="submit-login"/></p>-->
                                 <p><input class="boton negro redondo" name="button" type="submit" value="Ingresar"></p>

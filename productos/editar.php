@@ -6,6 +6,7 @@
     <title>Internet Dreams</title>
     <link rel="stylesheet" href="../css/estilo.css" type="text/css" media="screen" title="default" />
     <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default" />
+    <script src="../js/Validador.js" type="text/javascript"></script>
     
     <script>
     function selectInCombo(combo,text)
@@ -19,6 +20,9 @@
                 document.getElementById(combo).selectedIndex =indice;
         }
     }
+    
+    
+    
    </script>
 </head>
 <?php 
@@ -45,7 +49,7 @@ $desc_unidad_enviado=$_POST['desc_unidad2'];
         
         <h2>Modificacion de producto. </h2>
         <h3>Permite realizar las modificaciones necesarias de los productos ingresados en sistema.</h3>
-        <form action="recibirEditar.php" method="post" enctype="multipart/form-data" id="form1">
+        <form action="recibirEditar.php" method="post" enctype="multipart/form-data" id="form1" onSubmit="return validaEditaPHP('nombre')">
 
             <table width="702" align="center" cellpadding="10" cellspacing="10" border="0" id="id-form">
 

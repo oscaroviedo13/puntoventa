@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    
+    <link rel="stylesheet" href="css/estilo.css" type="text/css" media="screen" title="default" />
 </head>    
     
 <?php
@@ -39,7 +39,7 @@ $consulta=mysql_query("SELECT * FROM view_informacion_producto where view_inform
         	<input name="cantidad" type="hidden" value="1" />
         	<input  class="boton negro redondo"name="Comprar" type="submit" value="Comprar" />-->
 <!--        </form>-->
-		
+	<input type="button" class="boton negro redondo" name="cancel" id="button2" onclick="history.back(-1);" value="Cancelar" />	
 	</div>
 	<div class="cajaDes">
             
@@ -77,7 +77,7 @@ $consulta=mysql_query("SELECT * FROM view_informacion_producto where view_inform
                                 <p><?php echo $iva. "%"?></p>
                         </td>
 			<td>&nbsp;</td>
-		  </tr>
+		  </tr>		 
 		</table>            
 	</div>
 	

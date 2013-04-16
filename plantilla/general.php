@@ -25,6 +25,18 @@ if(!isset($_SESSION["contadorSession"])){
 <!--  jquery core -->
 <script src="../js/jquery/jquery-1.4.1.min.js" type="text/javascript"></script>
 
+<!--Start of Zopim Live Chat Script-->
+<script type="text/javascript">
+window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+$.src='//cdn.zopim.com/?190bir6INMNTWbmrwTGUuPc88imSHbVW';z.t=+new Date;$.
+type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+</script>
+
+
+<!--End of Zopim Live Chat Script-->
+
 <!--  checkbox styling script -->
 <script src="../js/jquery/ui.core.js" type="text/javascript"></script>
 <script src="../js/jquery/ui.checkbox.js" type="text/javascript"></script>
@@ -285,7 +297,7 @@ $(document).pngFix( );
                             
                                 <li><a href="../productos/articulos.php" target="CONTENIDO" >Listado de productos</a></li>
                                 <li><a href="../galeria.php" target="CONTENIDO" >Galeria de productos</a></li>
-				<li><a href="#nogo">Ingresar Producto</a></li>
+				<li><a href="../productos/crear.php" target="CONTENIDO">Ingresar Producto</a></li>
 				<!--<li><a href="#nogo">Dashboard Details 3</a></li>-->
 			</ul>
 		</div>
@@ -315,7 +327,7 @@ $(document).pngFix( );
 		<div class="select_sub">
 			<ul class="sub">
 				<li><a href="#nogo">Ingresar Existencia</a></li>
-				<li><a href="#nogo">Movimiento Bodega</a></li>
+				<li><a href="../ProductoLocalidad/ingresarProductoLocalidad.php" target="CONTENIDO" >Ingresar Producto/Localidad</a></li>
 				<!--<li><a href="#nogo"></a></li>-->
 			</ul>
 		</div>
