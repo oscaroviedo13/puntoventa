@@ -84,7 +84,7 @@ body	{
  
 	
 #content-table-inner	{
-	font-size: 12px;
+	font-size: 11px;
 	line-height: 12px;
 	padding: 10px 0 20px 0;
 	}
@@ -105,7 +105,7 @@ body	{
 	background: url(../images/shared/border_bit.jpg) right repeat-y;
 	}
 #table-content	{
-	line-height: 16px;
+/*	line-height: 16px;*/
 	margin: 0 10px 10px 10px;
 	min-height: 300px;
 	}
@@ -343,7 +343,7 @@ a:hover.icon-5	{
 	text-decoration: underline;
 	}
 #product-table	th	{
-	height: 45px;
+	height: 35px;
 	text-align: left;
 	}
 #product-table	.minwidth-1	{
@@ -354,7 +354,7 @@ a:hover.icon-5	{
 	min-width: 110px;
 	}
 #product-table	.minwidth-option	{
-        min-width: 40px;
+        min-width: 160px;
         }
 #product-table td	{
 	border: 1px solid #d2d2d2;
@@ -395,7 +395,7 @@ td.checkbox-width	{
 	background: url(../images/table/table_sort_arrow.gif) right no-repeat;
 	color: #fff;
 	font-family: Tahoma;
-	font-size: 13px;
+	font-size: 12px;
 	font-weight: bold;
 	line-height: 14px;
 	margin: 0 0 0 10px;
@@ -924,7 +924,7 @@ Copyright (c) 2005-2007 Stu Nicholls. All rights reserved. This stylesheet and t
 .nav	{
 	float: left;
 	font-family: Tahoma;
-	font-size: 13px;
+	font-size: 11px;
 	height: 38px;
 	position: relative;
 	width: 650px;
@@ -940,7 +940,7 @@ Copyright (c) 2005-2007 Stu Nicholls. All rights reserved. This stylesheet and t
 .nav .table	{
 	display: table;
         width: 1000px; 
-/*        Para determinar el tamaño del menu*/
+/*        Para determinar el tamaÃ±o del menu*/
 	}
 .nav .select,
 .nav .current	{
@@ -1034,7 +1034,7 @@ Copyright (c) 2005-2007 Stu Nicholls. All rights reserved. This stylesheet and t
 	text-align: left;
 	top: 37px;
 	width: 1000px;
-        /*PAra determinar el tamaño de los submenus*/
+        /*PAra determinar el tamaÃ±o de los submenus*/
 	z-index: 100;
 	}
 .nav .current .show	{
@@ -1046,7 +1046,7 @@ Copyright (c) 2005-2007 Stu Nicholls. All rights reserved. This stylesheet and t
 	border: 0;
 	color: #fff;
 	font-weight: bold;
-	font-size: 13px;
+	font-size: 11px;
 	display: block;
 	float: left;
 	margin: 0;
@@ -1171,10 +1171,33 @@ form	{
 /*  STYLED SELECTBOXES style 1 --------------------------------- */	
 
 .styledselect {
+        background: #2a2a2a;
+        border: 1px solid #424242;
+	color:#fff;
+	width:200px;
+	padding: 5px;
+	line-height: 14px;
+	margin-right: 6px;
+	font-size: 12px;
+}
+
+
+.stylednumber {
+        background: #2a2a2a;
+        border: 1px solid #424242;
+	color:#fff;
+	width:185px;
+	padding: 6px;        
+	line-height: 14px;
+	margin-right: 6px;
+	font-size: 12px;
+}
+
+.styledselectlarge {
 background: #2a2a2a;
 border: 1px solid #424242;
 	color:#fff;
-	width:200px;
+	width:320px;
 	padding: 5px;
 	line-height: 14px;
 	margin-right: 6px;
@@ -1417,7 +1440,60 @@ label	{
 	}
 	
 	
-	
+#backfond{
+        background-image: linear-gradient(bottom, rgb(48,47,47), rgb(170,179,179) 52%);
+        background-image: -o-linear-gradient(bottom, rgb(48,47,47), rgb(170,179,179) 52%);
+        background-image: -moz-linear-gradient(bottom, rgb(48,47,47), rgb(170,179,179) 52%);
+        background-image: -webkit-linear-gradient(bottom, rgb(48,47,47), rgb(170,179,179) 52%);
+        background-image: -ms-linear-gradient(bottom, rgb(48,47,47), rgb(170,179,179) 52%);
+
+        background-image: -webkit-gradient(
+                linear,
+                left bottom,
+                left top,
+                color-stop(0, rgb(48,47,47)),
+                color-stop(0.52, rgb(170,179,179))
+        );
+        border-radius:30px 30px;
+        color:white;
+        display: inline-block;
+        box-shadow:0 0 30px 0 black; 
+        
+	font-size: 12px;
+	height: 212px;
+	line-height: 12px;
+	padding-top: 55px;
+	position: relative;
+	width: 460px;
+        
+        animation: animacion 2s;
+        -webkit-animation: animacion 2s; /* Safari and Chrome */
+}	
+
+#contenidoBorde{
+        /*background: rgba(14, 13, 13, 0.36);*/
+/*        border-radius:30px 30px;
+        color:white;
+        display: inline-block;
+        box-shadow:0 0 15px 0 black; 
+        
+	font-size: 12px;
+	height: 212px;
+	line-height: 12px;
+	padding-top: 60px;
+	position: relative;
+	width: 508px;*/
+
+        color: #333;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 18px;
+	margin: 0 auto 0 auto;
+	max-width: 1260px;
+	min-width: 780px;
+	padding: 35px 0px 30px 0px;
+        box-shadow:0 0 15px 0 black;
+}	
 	
 	
 /*  LOGIN -------------------------------------------------------------------------------- */	
@@ -1567,3 +1643,45 @@ a:hover.back-login	{
 	background: url(../images/login/submit_login.gif) no-repeat 0 -29px;
 	}
  
+@keyframes animacion{
+        from{
+                margin-left: 200%;
+        }
+
+        to{
+                margin-left: 1%;
+        }
+}
+@-webkit-keyframes animacion{
+        from{
+                margin-left: 200%;
+        }
+
+        to{
+                margin-left: 1%;
+        }
+}
+
+@-webkit-keyframes salida{
+        from{
+                margin-left: 1%;
+        }
+
+        to{
+                margin-left: 200%;
+        }
+}
+
+/* Estilo por defecto */
+ 
+input:required:invalid {
+ 
+border: 1px solid red;
+ 
+}
+ 
+/*input:required:valid {
+ 
+border: 1px solid green;
+ 
+}*/

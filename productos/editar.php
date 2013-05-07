@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -6,6 +6,7 @@
     <title>Internet Dreams</title>
     <link rel="stylesheet" href="../css/estilo.css" type="text/css" media="screen" title="default" />
     <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default" />
+    <script src="../js/Validador.js" type="text/javascript"></script>
     
     <script>
     function selectInCombo(combo,text)
@@ -19,6 +20,9 @@
                 document.getElementById(combo).selectedIndex =indice;
         }
     }
+    
+    
+    
    </script>
 </head>
 <?php 
@@ -45,7 +49,7 @@ $desc_unidad_enviado=$_POST['desc_unidad2'];
         
         <h2>Modificacion de producto. </h2>
         <h3>Permite realizar las modificaciones necesarias de los productos ingresados en sistema.</h3>
-        <form action="recibirEditar.php" method="post" enctype="multipart/form-data" id="form1">
+        <form action="recibirEditar.php" method="post" enctype="multipart/form-data" id="form1" onSubmit="return validaEditaPHP('nombre')">
 
             <table width="702" align="center" cellpadding="10" cellspacing="10" border="0" id="id-form">
 
@@ -57,11 +61,11 @@ $desc_unidad_enviado=$_POST['desc_unidad2'];
                 <tr>
                     <input name="id3" type="hidden" value="<?php echo $id ?>" />                                               
                     <td>Nombre:</td>
-                <td><input type="text" name="nombre3" class="inp-form" id="nombre" value="<?php echo $nombre ?>"/></td>
+                    <td><input type="text" name="nombre3" required="required" class="inp-form" id="nombre" value="<?php echo $nombre ?>"/></td>
                 </tr>
                 <tr>
                     <td>Descripcion:</td>
-                    <td><input type="text" name="desc3" class="inp-form" id="desc" value="<?php echo $desc ?>"/></td>
+                    <td><input type="text" name="desc3" required="required" class="inp-form" id="desc" value="<?php echo $desc ?>"/></td>
                 </tr>
                 <tr>
                     <td>Categoria:</td>
@@ -109,16 +113,16 @@ $desc_unidad_enviado=$_POST['desc_unidad2'];
                 </tr>  
                 <tr>
                     <td>Stock:</td>
-                    <td><input type="text" name="stock3" class="inp-form" id="stock" value="<?php echo $stock ?>"/></td>
+                    <td><input type="number" required="required" title="Determine la cantidad minima de elemento que se guardaran en bodega" min="1" max="1000" name="stock3" class="stylednumber" id="stock" value="<?php echo $stock ?>"/></td>
                 </tr>
                 <tr>
                     <td>Precio Base:</td>
-                    <td><input type="text" name="precio3" class="inp-form" id="precio" value="<?php echo $precio ?>"/></td>
+                    <td><input type="number" required="required" min="1" max="1000000000" name="precio3" class="stylednumber" id="precio" value="<?php echo $precio ?>"/></td>
                 </tr>
                 
                 <tr>
                     <td>Iva (%):</td>
-                    <td><input type="text" name="iva3" class="inp-form" id="iva" value="<?php echo $iva ?>"/></td>
+                    <td><input type="number" required="required" min="0" max="50" name="iva3" class="stylednumber" id="iva" value="<?php echo $iva ?>"/></td>
                 </tr>
                 <tr>
                     <td>Modificacion:</td>

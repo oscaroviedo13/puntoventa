@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Aguafina+Script' rel='stylesheet' type='text/css'>
+		
+		<title>Pagina prueba.</title>
+		
+		<style>
+		
+			@keyframes animacion{
+				from{
+					margin-left: 0;
+				}
+				
+				to{
+					margin-left: 50%;
+				}
+			}
+			@-webkit-keyframes animacion{
+				from{
+					margin-left: 0;
+				}
+				
+				to{
+					margin-left: 50%;
+				}
+			}
+			
+			span{
+				animation: animacion 5s;
+				-webkit-animation: animacion 5s; /* Safari and Chrome */
+			}
+			h1{
+				font-family: 'Aguafina Script', cursive;
+				font-size:60px;			
+				text-shadow:0 0 10px black; 
+			}
+			
+			span{
+				background: rgb(97, 25, 25);
+				padding:0 15px;
+				border-radius:0 10px;
+				color:white;
+				display: inline-block;
+				box-shadow:0 0 15px 0 black; 
+				transition:all 0.5s
+			}
+			
+			span:hover{
+				background: gray;
+			}
+                        
+                        body{
+                            background-image: linear-gradient(bottom, rgb(35,70,74) 28%, rgb(100,115,117) 64%);
+                            background-image: -o-linear-gradient(bottom, rgb(35,70,74) 28%, rgb(100,115,117) 64%);
+                            background-image: -moz-linear-gradient(bottom, rgb(35,70,74) 28%, rgb(100,115,117) 64%);
+                            background-image: -webkit-linear-gradient(bottom, rgb(35,70,74) 28%, rgb(100,115,117) 64%);
+                            background-image: -ms-linear-gradient(bottom, rgb(35,70,74) 28%, rgb(100,115,117) 64%);
+
+                            background-image: -webkit-gradient(
+                                    linear,
+                                    left bottom,
+                                    left top,
+                                    color-stop(0.28, rgb(35,70,74)),
+                                    color-stop(0.64, rgb(100,115,117))
+                            );
+                        }
+			
+		</style>
+	</head>
+
+	<body>
+		<h1 id="cabecera">Oscar Oviedo</h1>
+			<strong>xxxxx taller HTML5</strong>
+		
+		
+		<nav>
+			<span>Inicio</span>
+			<span>Archivo</span>
+		</nav>
+		
+		<section>
+			<article>
+				<p>Contenido  article</p>
+				<audio> 
+					<source src="311BeautifulDisaster.mp3" type="audio/mp3"/>
+				</audio>
+			</article>
+		</section>
+		
+		<form>
+			<label for="nombre"> Nombre </label>
+			<input type="text" name="nombre" placeholder="Escriba nombre" required/>
+			
+			<label for="telefono"> Telefono </label>
+			<input type="number" name="telefono" required/>
+			
+			<label for="direccion"> Direccion </label>
+			<input type="text" name="direccion" placeholder="Escriba direccion" required/>
+			
+			<label for="correo"> Correo Electronico </label>
+			<input type="email" name="correo" placeholder="Escriba correo electronico" required/>
+			<br>
+			<input type="submit" value="enviar"/>
+		</form>
+		
+		
+		<footer><a href="http://www.gospelgeek.com/html5/#15">HTML5(http://tourshopping.com.co/landing/)</a></footer>
+	</body>
+</html>
+	
+	

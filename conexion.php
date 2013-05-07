@@ -190,6 +190,20 @@ function crearProducto($imagenProducto,$nombreProducto,$descripcionProducto,$pre
 
 }
 
+function crearAsignarProductoLocalidad($id_producto, $id_localidad){
+    $retorno = 0;
+    //Escribo en mi base de datos
+    if (isset($id_producto)){
+
+        $cad="CALL proc_asignar_localidad_producto($id_producto,$id_localidad);";
+        
+        $retorno=mysql_query($cad);        
+   }
+   
+   return $retorno;
+
+}
+
 
 
 ?>

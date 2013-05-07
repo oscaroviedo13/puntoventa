@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -30,11 +30,11 @@
                 </tr>
                 <tr>                                              
                     <td>Nombre:</td>
-                <td><input type="text" name="nombre3" class="inp-form" id="nombre" value=""/></td>
+                    <td><input type="text" name="nombre3" required="required" title="Por favor ingrese en nombre del producto." class="inp-form" id="nombre" value=""/></td>
                 </tr>
                 <tr>
                     <td>Descripcion:</td>
-                    <td><input type="text" name="desc3" class="inp-form" id="desc" value=""/></td>
+                    <td><input type="text" name="desc3" required="required" title="Por favor ingrese una descripcion del producto." class="inp-form" id="desc" value=""/></td>
                 </tr>
                 <tr>
                     <td>Categoria:</td>
@@ -78,17 +78,17 @@
                 </tr>                
                 <tr>
                     <td>Stock:</td>
-                    <td><input type="text" name="stock3" class="inp-form" id="stock" value="0"/></td>
+                    <td><input type="number" required="required" min="1" max="1000" title="Determine la cantidad minima de elemento que se guardaran en bodega" name="stock3" class="stylednumber" id="stock" value="0"/></td>
                 </tr>
                 <tr>
                     <td>Precio Base:</td>
-                    <td><input type="text" name="precio3" class="inp-form" id="precio" value="0"/></td>
+                    <td><input type="number" required="required" min="1" max="1000000000" name="precio3" class="stylednumber" id="precio" value="0"/></td>
                 </tr>
                 
                 
                 <tr>
                     <td>Iva (%):</td>
-                    <td><input type="text" name="iva3" class="inp-form" id="iva" value="0"/></td>
+                    <td><input type="number" required="required" min="0" max="50" name="iva3" class="stylednumber" id="iva" value="0"/></td>
                 </tr>
                 
                 <tr>
