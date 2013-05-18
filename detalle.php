@@ -3,43 +3,39 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link rel="stylesheet" href="css/estilo.css" type="text/css" media="screen" title="default" />
+    
 </head>    
     
 <?php
-include('conexion.php');
-$consulta=mysql_query("SELECT * FROM view_informacion_producto where view_informacion_producto.id=".$_POST['id']);
-	
+
+    include ('conecta.php');
+    include ('funciones.php');
+
+    $consulta="SELECT * FROM view_informacion_producto where view_informacion_producto.id_producto_localidad=".$_POST['id_pro_localidad'];
+    $rs=$db->Execute($consulta);
 ?>
 <?php include('plantilla/head.php');?>
 <div class="contenedor">
 	<?php 
-	while($filas=mysql_fetch_array($consulta)){
-		$id=$filas['id'];
-		$imagen=$filas['imagen'];
-		$nombre=$filas['nombre'];
-		$desc=$filas['descripcion'];
-		$precio=$filas['precio_base'];
-		$existencia=$filas['existencia'];
-		$fecha=$filas['fecha_ingreso'];
-		$iva=$filas['iva'];
-		$descripcionUnidad=$filas['descripcion_unidad'];
-		$convencionUnidad=$filas['convencion_unidad'];
-		$descripcionTipo=$filas['descripcion_tipo_pro'];
+            for($i=0;$i<$rs->Recordcount();$i++){ 
+		$id=$rs->fields[0];
+		$imagen=$rs->fields[1];
+		$nombre=$rs->fields[2];
+		$desc=$rs->fields[3];
+		$precio=$rs->fields[6];
+		$existencia=$rs->fields[7];
+		$fecha=$rs->fields[9];
+		$iva=$rs->fields[10];
+		$descripcionUnidad=$rs->fields[12];
+		$convencionUnidad=$rs->fields[13];
+		$descripcionTipo=$rs->fields[5];
 	
 	?> 
 	<div class="cajaSola">
 	    <h2><?php echo $nombre?></h2>
 		<img src="<?php echo $imagen?>" width="200" >
 		<p>$<?php echo $precio?></p>
-		<!--<a href="carrto/carrito.php"><img name="carrito" src="img/carrito2.png" id="productos" alt="" /></a>-->
-<!--		<form action="carrito/carrito.php" method="post" name="compra">
-        	<input name="id_txt" type="hidden" value="<?php echo $id ?>" />
-        	<input name="nombre" type="hidden" value="<?php echo $nombre ?>" />
-        	<input name="precio" type="hidden" value="<?php echo $precio ?>" />
-        	<input name="cantidad" type="hidden" value="1" />
-        	<input  class="boton negro redondo"name="Comprar" type="submit" value="Comprar" />-->
-<!--        </form>-->
-	<input type="button" class="boton negro redondo" name="cancel" id="button2" onclick="history.back(-1);" value="Cancelar" />	
+		<input type="button" class="boton negro redondo" name="cancel" id="button2" onclick="history.back(-1);" value="Regresar" />	
 	</div>
 	<div class="cajaDes">
             
@@ -57,7 +53,7 @@ $consulta=mysql_query("SELECT * FROM view_informacion_producto where view_inform
 		  <tr>
 			<td>
                             <p><h3>Precio base.</h3></p>
-                                <p><?php echo "$".$precio?></p>
+                                <p><?php echo "$ ".number_format($precio)?></p>
                         </td>
 			<td>
                             <p><h3>Categoria Producto.</h3></p>
@@ -82,7 +78,8 @@ $consulta=mysql_query("SELECT * FROM view_informacion_producto where view_inform
 	</div>
 	
 	<?php
-	}	
+	}
+        $db->close();
 	?>
 	
 </div>

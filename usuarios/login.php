@@ -8,71 +8,93 @@
     </head>
     <body>
         <?php 
-            include ('../conexion.php');
+            include ('../conecta.php');
+            include ('../funciones.php');
+            
             $usuarioIng=$_POST['user'];
             $passIng=$_POST['pass'];
+            $localidad_designada_proArray=$_POST['cmbLocalidad'];
             
-            $consultaMD5=mysql_query("SELECT md5('$passIng') as clavemd5");
-            
-            while($filasMD5=mysql_fetch_array($consultaMD5)){
-                $passIng = $filasMD5['clavemd5'];                
+            for ($index = 0; $index < count($localidad_designada_proArray); $index++) {
+                $localidad_designada = $localidad_designada_proArray[$index];
             }
             
-            
-            
-            session_start();
-            $consultaGeneral=mysql_query("select * from view_inicio_sesion");
-            
-            //MD5
-            
-            $puerta='continuar';	
-            while($filas=mysql_fetch_array($consultaGeneral)and $puerta='continuar'){
-
-                $id=$filas['id'];
-                $nombre=$filas['nombre'];
-                $usuario=$filas['login'];
-                $pass=$filas['pwd'];
-                $id_localidad=$filas['id_localidad'];
-                $nombre_localidad=$filas['nombre_localidad'];
-                $id_comuna=$filas['id_comuna'];
-                $nombre_comuna=$filas['nombre_comuna'];
-                $fecha=$filas['fecha_creacion_usuario'];
-                $fecha=$filas['fecha_creacion_contrasena'];
-
-
-                if (isset($usuarioIng)and isset($passIng)){
-//                    echo $pass.'-'.$passIng;
-                    if ($usuario==$usuarioIng and $passIng == $pass){
-                        
-                        $miSession=array('id'=>$id,
-                                        'nombre'=>$nombre,
-                                        'usuario'=>$usuario,
-                                        'pass'=>$pass,
-                                        'fecha'=>$fecha,
-                                        'id_comuna'=>$id_comuna,
-                                        'nombre_comuna'=>$nombre_comuna,
-                                        'nombre_localidad'=>$nombre_localidad,
-                                        'id_localidad'=>$id_localidad);
-                        //ir a la pagina restringida
-                        $_SESSION['miSession']=$miSession;
-                        $_SESSION['contadorSession']=1;
-                        ?>
-                        <html>
-                            <head>
-                                <script>
-                                    javascript:smoke.signal('Procesando peticion...');
-                                </script>
-                                <meta http-equiv="refresh" content="3; url= ../plantilla/general.php">   
-                            </head>
-                        </html>
-                <?php
-                        $puerta='salir';
-                        exit; 
-                    }else{
-                        $resutado='no';				
-                    }
+            $consultaMD5 = "SELECT md5('$passIng') as clavemd5";
+            $rs=$db->Execute($consultaMD5);
+    
+            if($rs->Recordcount() > 0){
+                for($i=0;$i<$rs->Recordcount();$i++){        
+                    $passIng = $rs->fields[0];
                 }
             }
+            
+            session_start();
+            $consultaGeneral="select * from view_inicio_sesion";
+            $rs=$db->Execute($consultaGeneral);
+    
+            //MD5
+            
+            $puerta='continuar';
+            
+            for($i=0;$i<$rs->Recordcount();$i++){        
+                
+                if($puerta == 'continuar'){
+                    $id=$rs->fields[0];
+                    $cedulaID=$rs->fields[1];
+                    $apellido=$rs->fields[2];
+                    $nombre=$rs->fields[3];
+                    $usuario=$rs->fields[9];
+                    $pass=$rs->fields[10];
+                    $id_localidad=$rs->fields[5];
+                    $nombre_localidad=$rs->fields[6];
+                    $id_comuna=$rs->fields[7];
+                    $nombre_comuna=$rs->fields[8];
+                    $fecha=$rs->fields[11];
+                    $descripcion_perfil = $rs->fields[13];
+                    $id_perfil = $rs->fields[14];
+
+                    if (isset($usuarioIng)and isset($passIng)){
+    //                    echo $pass.'-'.$passIng;
+                        if ($usuario==$usuarioIng and $passIng == $pass){
+
+                            $miSession=array('id'=>$id,
+                                            'nombre'=>$nombre,
+                                            'usuario'=>$usuario,
+                                            'pass'=>$pass,
+                                            'fecha'=>$fecha,
+                                            'id_comuna'=>$id_comuna,
+                                            'nombre_comuna'=>$nombre_comuna,
+                                            'nombre_localidad'=>$nombre_localidad,
+                                            'id_localidad'=>$id_localidad,
+                                            'apellido'=>$apellido,
+                                            'cedula'=>$cedulaID,
+                                            'descripcion_perfil'=>$descripcion_perfil, 
+                                            'localidad_designada'=>$localidad_designada,
+                                            'id_perfil'=>$id_perfil
+                                );
+                            //ir a la pagina restringida
+                            $_SESSION['miSession']=$miSession;
+                            $_SESSION['contadorSession']=1;
+                            ?>
+                            <html>
+                                <head>
+                                    <script>
+                                        javascript:smoke.signal('Procesando peticion de <?php echo $usuario; ?> para (<?php echo $localidad_designada; ?>)');
+                                    </script>
+                                    <meta http-equiv="refresh" content="3; url= ../plantilla/general.php">   
+                                </head>
+                            </html>
+                    <?php
+                            $puerta='salir';
+                            exit; 
+                        }else{
+                            $resutado='no';				
+                        }
+                    }
+                }
+                $rs->Movenext();
+            }
+            $db->close();
 
             if ($resutado=='no'){
 //                echo 'su usuario o contraseña no se encontraron.';

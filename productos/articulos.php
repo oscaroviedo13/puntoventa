@@ -3,15 +3,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <title>Internet Dreams</title>
     <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default" />
-    <link rel="stylesheet" href="../css/estilo.css" type="text/css" media="screen" title="default" />
-    
+    <link rel="stylesheet" href="../css/estilo.css" type="text/css" media="screen" title="default" />    
 </head>
     
   
 <body> 
-<?php include ('../conexion.php');?>
+<?php 
+    include ('../funciones.php');
+    
+    session_start();
+    
+    $id_perfil = $_SESSION['miSession']['id_perfil'];
+    $localidad_designada = $_SESSION['miSession']['localidad_designada'];
+    
+    $CLAUSULA = "WHERE ";
+    
+    if($id_perfil != '402'){
+        $CLAUSULA .= "id_localidad = ".$localidad_designada." AND ";
+    }
+    ?>
 
 
 
@@ -45,95 +56,74 @@
 		<td>
 		<!--  start content-table-inner ...................................................................... START -->
 		<div id="content-table-inner">
-			<div align="center">
-            <form  method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">                
-            <table border="0" align="center" cellpadding="0" cellspacing="0">
-                <tr>
-                <td><input type="text" value="" name="datoBusqueda" class="top-search-inp" /></td>
-                <!--<td><input type="text" value="Search" onblur="if (this.value=='') { this.value='Search'; }" onfocus="if (this.value=='Search') { this.value=''; }" class="top-search-inp" /></td>-->
-                <td></td>
-				<td>
-                <select  name="arrayTipoBusqueda[]" class="styledselect">
-                    <option value="nombre"> Nombre</option>
-                    <option value="descripcion"> Descripcion</option>
-                    <option value="descripcion_tipo_producto"> Tipo Producto</option>
-                    <option value="id">Codigo Identificacion</option>
-                    <option value="existencia">Existencia</option>
-                </select> 
-                </td>
-                <td>
-                <!--<input type="image" src="../images/shared/top_search_btn.gif"  />-->
-                <input type="submit" class="boton negro redondo" value="Buscar" />
-                </td>
-                </tr>
-              </table>
-              </form>  
-            </div>
-			<div style="height:20px"></div>
+                
+			<!--<div style="height:20px"></div>-->
 			<!--  start table-content  -->
-			<div id="table-content">
-			
+			<!--<div id="table-content">-->			
 				
-				<!--  end message-green -->
-		
-		 
-				<!--  start product-table ..................................................................................... -->
-				<!--<form id="mainform" action="articulos.php">-->
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Id</a></th>
 					<th class="table-header-repeat line-left minwidth-2"><a href="">Nombre</a></th>
 					<th class="table-header-repeat line-left"><a href="">Descripcion</a></th>
-                                        <th class="table-header-repeat line-left"><a href="">Tipo Producto</a></th>
+                                        <th class="table-header-repeat line-left minwidth-2"><a href="">Tipo Producto</a></th>
+                                        <th class="table-header-repeat line-left minwidth-2"><a href="">Localidad</a></th>
 					<th class="table-header-repeat line-left"><a href="">Precio</a></th>
-					<th class="table-header-repeat line-left"><a href="">Iva(%)</a></th>
+					<th class="table-header-repeat line-left"><a href="">Iva</a></th>
 					<th class="table-header-repeat line-left"><a href="">Existencia</a></th>
 					<th class="table-header-repeat line-left"><a href="">Stock</a></th>
-					<th class="table-header-repeat line-left"><a href="">Ultima Modificacion</a></th>
+					<!--<th class="table-header-repeat line-left"><a href="">Ultima Modificacion</a></th>-->
 					<th class="table-header-repeat line-left minwidth-option"><a href="">Opciones</a></th>
 				</tr>
-                                <?php 
-                                    $consulta=mysql_query("select * from view_informacion_producto where $tipoBusqueda like '%$criterioBusqueda%' ");
-                                        
-                                    $nro_reg=mysql_num_rows($consulta);
+                                <?php
+                                    include ('../conecta.php');
+                                    $consulta = "select * from view_informacion_producto $CLAUSULA $tipoBusqueda like '%$criterioBusqueda%' ";
+//                                    echo "id_perfil: ".$consulta; 
+                                    $rs=$db->Execute($consulta);
+                                    
+                                    $nro_reg = $rs->Recordcount();
 
                                     if ($nro_reg==0){
-                                            echo 'no se han encontrado productos para mostrar';
+                                        echo 'no se han encontrado productos para mostrar';
                                     }
 
-                                    $reg_por_pagina=8;
+                                    $reg_por_pagina=13;
                                     if (isset($_GET['num'])){
-                                            $nro_pagina=$_GET['num'];	
+                                        $nro_pagina=$_GET['num'];	
                                     }else{
-                                            $nro_pagina=1;
+                                        $nro_pagina=1;
                                     }
 
                                     if (is_numeric($nro_pagina)){
-                                            $inicio=(($nro_pagina-1)*$reg_por_pagina);
+                                        $inicio=(($nro_pagina-1)*$reg_por_pagina);
                                     }
                                     else{
                                         $inicio=0;
                                     }
                                     
-                                    $consulta=mysql_query("SELECT * FROM view_informacion_producto where $tipoBusqueda like '%$criterioBusqueda%' limit  $inicio,$reg_por_pagina",$conexion);
+                                    
+                                    $consulta = "SELECT * FROM view_informacion_producto $CLAUSULA $tipoBusqueda like '%$criterioBusqueda%' limit  $inicio,$reg_por_pagina";
+                                    $rs=$db->Execute($consulta);
+                                    
                                     $can_paginas=ceil($nro_reg/$reg_por_pagina);
 
-                                    while($filas=mysql_fetch_array($consulta)){
-                                            $id=$filas['id'];
-                                            $nombre=$filas['nombre'];
-                                            $desc=$filas['descripcion'];
-                                            $precio=$filas['precio_base'];
-                                            $iva=$filas['iva'];
-                                            $existencia=$filas['existencia'];
-                                            $stock=$filas['stock_minimo'];
-                                            $fecha=$filas['fecha_ingreso'];
-                                            $imagen=$filas['imagen'];
-                                            $id_tipo_pro=$filas['id_tipo_pro'];
-                                            $id_unidad=$filas['id_unidad'];
-                                            $desc_unidad=$filas['descripcion_unidad'];
-                                            $conv_unidad2=$filas['convencion_unidad'];
-                                            $descripcion_tipo_pro=$filas['descripcion_tipo_pro'];
-
+                                    for($i=0;$i<$rs->Recordcount();$i++){ 
+                                        $id=$rs->fields[0];
+                                        $nombre=$rs->fields[2];
+                                        $desc=$rs->fields[3];
+                                        $precio=$rs->fields[6];
+                                        $iva=$rs->fields[10];
+                                        $existencia=$rs->fields[7];
+                                        $stock=$rs->fields[8];
+                                        $fecha=$rs->fields[9];
+                                        $imagen=$rs->fields[1];
+                                        $id_tipo_pro=$rs->fields[4];
+                                        $id_unidad=$rs->fields[11];
+                                        $desc_unidad=$rs->fields[12];
+                                        $conv_unidad2=$rs->fields[13];
+                                        $descripcion_tipo_pro=$rs->fields[5];
+                                        $id_produc_localidad=$rs->fields[18];
+                                        $nombre_localidad=$rs->fields[15];
 
                                 ?>
                                 <tr>                                    
@@ -141,14 +131,16 @@
 					<td><?php echo $nombre ?></td>
 					<td><?php echo $desc ?></td>
 					<td><?php echo $descripcion_tipo_pro ?></td>
+					<td><?php echo $nombre_localidad ?></td>
 					<td>
-                                            <div style="float: left">$&nbsp;&nbsp;&nbsp;</div>
-                                            <div style="float: center"><?php echo $precio?></div>                                        </td>
+                                            <!--<div style="float: left">$&nbsp;&nbsp;&nbsp;</div>-->
+                                            <div style="float: center"><?php echo number_format($precio);?></div>                                        
+                                        </td>
 					<td><?php echo $iva ?></td>
 					<td><?php echo $existencia ?></td>
 					<td><?php echo $stock ?></td>
-					<td><?php echo $fecha ?></td>
-					<td class="options-width">
+					<!--<td><?php // echo $fecha ?></td>-->
+					<th class="options-width">
                                             <div style="float:left">                   
                                                 <form action="editar.php" method="post" name="edita">
                                                     <input name="id2" type="hidden" value="<?php echo $id ?>" />   
@@ -165,6 +157,7 @@
                                                     <input name="id_unidad2" type="hidden" value="<?php echo $id_unidad ?>" />   
                                                     <input name="desc_unidad2" type="hidden" value="<?php echo $desc_unidad ?>" />   
                                                     <input name="conv_unidad2" type="hidden" value="<?php echo $conv_unidad2 ?>" />   
+                                                    <input name="id_pro_localidad" type="hidden" value="<?php echo $id_produc_localidad ?>" />   
 
                                                     <input id="editarPro" type="image" src="../images/shared/nav/icon_acc_settings.gif" class="boton negro redondo" value="Editar" />
                                                     <script type="text/javascript">
@@ -178,9 +171,20 @@
                                             <div style="float:left">
                                                 <form action="../detalle.php" method="post" name="detalle">
                                                         <input name="id" type="hidden" value="<?php echo $id ?>" />
+                                                        <input name="id_pro_localidad" type="hidden" value="<?php echo $id_produc_localidad ?>" />   
                                                         <input id="detallePro" type="image" src="../images/shared/nav/icon_acc_projects.gif" class="boton negro redondo" value="Detalle" />
                                                         <script type="text/javascript">
                                                         document.getElementById("detallePro").title="Detalle del Producto"
+                                                        </script>
+                                                </form>
+                                            </div>
+                                            <div style="float:left">
+                                                <form action="../ProductoLocalidad/existenciaProductoLocalidad.php" method="get" name="existProFrm">
+                                                        <input name="id2" type="hidden" value="<?php echo $id ?>" />   
+                                                        <input name="nombre2" type="hidden" value="<?php echo $nombre ?>" />   
+                                                        <input id="existPro" type="image" src="../images/shared/nav/icon_acc_inbox.gif" class="boton negro redondo" value="Detalle" />
+                                                        <script type="text/javascript">
+                                                        document.getElementById("existPro").title="Modificar Existencia del producto"
                                                         </script>
                                                 </form>
                                             </div>
@@ -207,23 +211,40 @@
                                                         </script>
                                                 </form>
                                             </div>
-                                            <div style="float:center">
-                                                <form action="../ProductoLocalidad/precioProductoLocalidad.php" method="post" name="precProLocal">
+                                            <div style="float:left">
+                                                <form action="../ProductoLocalidad/precioProductoLocalidad.php" method="get" name="precProLocal">
                                                         <input name="id2" type="hidden" value="<?php echo $id ?>" />   
+                                                        <input name="nombre2" type="hidden" value="<?php echo $nombre ?>" />   
                                                         
-                                                        <input id="editLocalPro" type="image" src="../images/shared/nav/icon_acc_inbox.gif" class="boton negro redondo" value="Editar Localidad" />
+                                                        <input id="editLocalPro" type="image" src="../images/shared/nav/icon_acc_preci.gif" class="boton negro redondo" value="Editar Localidad" />
                                                         <script type="text/javascript">
                                                         document.getElementById("editLocalPro").title="Modificar Precio Producto de Localidad"
                                                         </script>
                                                 </form>
                                             </div>
-    					</td>
+                                            <div style="float:left">
+                                                <form action="../ProductoLocalidad/stockProductoLocalidad.php" method="get" name="stcokProLocal">
+                                                        <input name="id2" type="hidden" value="<?php echo $id ?>" />
+                                                        <input name="nombre2" type="hidden" value="<?php echo $nombre ?>" />   
+                                                                                                               
+                                                        <input id="stcokLocalPro" type="image" src="../images/shared/nav/icon_acc_stock.gif" class="boton negro redondo" value="Cargar Stock" />
+                                                        <script type="text/javascript">
+                                                        document.getElementById("stcokLocalPro").title="Modificar la cantida minima de un producto por localidad"
+                                                        </script>
+                                                </form>
+                                            </div>
+    					</th>
 				</tr>
-				<?php }?>	
+				<?php 
+                                        $rs->Movenext();
+                                    }
+                                    
+                                    $db->close();
+                                ?>	
 				</table>
 				<!--  end product-table................................... --> 
 				<!--</form>-->
-			</div>
+			<!--</div>-->
 			<!--  end content-table  -->
 		
 			<!--  start actions-box ............................................... -->
@@ -258,11 +279,31 @@
 			</table>
 			<!--  end paging................ -->
 			
-                        <form action="crear.php" method="post" name="crea">
-                            <div class="clear">
-                                    <input type="submit" class="boton negro redondo" value="Crear Nuevo Producto" />
-                            </div>
-                        </form>
+                        <div align="left">
+                        <form  method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">                
+                            <table border="0" align="center" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td><input type="text" name="datoBusqueda" placeholder="Ingrese palabra" class="top-search-inp" /></td>
+                                    <td></td>
+                                    <td>
+                                        <select name="arrayTipoBusqueda[]" class="styledselect">
+                                            <option value="id">Codigo Identificacion</option>
+                                            <option value="descripcion">Descripcion</option>
+                                            <option value="existencia">Existencia</option>
+                                            <option value="nombre_localidad">Localidad</option>
+                                            <option value="nombre">Nombre</option>
+                                            <option value="descripcion_tipo_pro">Tipo Producto</option>
+                                            
+                                        </select> 
+                                    </td>
+                                    <td>
+                                        <input type="submit" class="boton negro redondo" value="Buscar" />
+                                    </td>
+                                </tr>
+
+                              </table>
+                          </form>  
+                        </div>
 		 
 		</div>
 		<!--  end content-table-inner ............................................END  -->

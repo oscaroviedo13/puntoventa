@@ -3,17 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <title>Internet Dreams</title>
     <link rel="stylesheet" href="../css/estilo.css" type="text/css" media="screen" title="default" />
     <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default" />
-    
-    
-   
 </head>
-<?php 
-?>
+
 <body>
-    <?php include ('../conexion.php');?>
+    <?php 
+    include ('../funciones.php');
+    ?>
     
     <div id="table-conten">
         
@@ -40,17 +37,19 @@
                     <td>Categoria:</td>
                     <td>
                         <select name="descripcion_tipo_pro3[]" class="styledselect">
-                            
-                            <?php 
-                                $consulta=mysql_query("select id_tipo_pro, descripcion_tipo_pro from tipo_producto order by id_tipo_pro",$conexion);
-                                
-                                while($filas= mysql_fetch_array($consulta)) {	
-                                    $id_tipo_pro=$filas['id_tipo_pro'];
-                                    $descripcion_tipo_pro=$filas['descripcion_tipo_pro'];
-                            ?>
-                                    <option value="<?php echo $id_tipo_pro ?>"><?php echo $descripcion_tipo_pro ?></option>
-                            <?php 
+                            <?php           
+                                include ('../conecta.php');
+                                $rs=$db->Execute("select id_tipo_pro, descripcion_tipo_pro from tipo_producto order by id_tipo_pro");
+
+                                for($i=0;$i<$rs->Recordcount();$i++){
+                                    $id_tipo_pro=$rs->fields[0];
+                                    $descripcion_tipo_pro=$rs->fields[1];
+                                    ?>
+                                        <option value="<?php echo $id_tipo_pro ?>"><?php echo $descripcion_tipo_pro ?></option>
+                                    <?php
+                                    $rs->Movenext();
                                 }
+                                $db->close();                        
                             ?>
                       </select>
                         
@@ -60,17 +59,19 @@
                     <td>Unidad:</td>
                     <td>
                         <select name="descripcion_uni[]" class="styledselect">
-                            
-                            <?php 
-                                $consulta=mysql_query("select unidad.id_unidad, concat(unidad.descripcion_unidad, ' (', unidad.convencion_unidad, ')') AS convencion_descripcion FROM unidad",$conexion);
-                                
-                                while($filas= mysql_fetch_array($consulta)) {	
-                                    $id_unidad = $filas['id_unidad'];
-                                    $convencion_descripcion = $filas['convencion_descripcion'];
-                            ?>
-                                    <option value="<?php echo $id_unidad ?>"><?php echo $convencion_descripcion ?></option>
-                            <?php 
+                            <?php          
+                                include ('../conecta.php');
+                                $rs=$db->Execute("select unidad.id_unidad, concat(unidad.descripcion_unidad, ' (', unidad.convencion_unidad, ')') AS convencion_descripcion FROM unidad");
+
+                                for($i=0;$i<$rs->Recordcount();$i++){
+                                    $id_unidad=$rs->fields[0];
+                                    $convencion_descripcion=$rs->fields[1];
+                                    ?>
+                                        <option value="<?php echo $id_unidad ?>"><?php echo $convencion_descripcion ?></option>
+                                    <?php
+                                    $rs->Movenext();
                                 }
+                                $db->close();                        
                             ?>
                       </select>
                         

@@ -13,15 +13,14 @@
     <link rel="stylesheet" href="css/smoke.css" type="text/css" media="screen" />
     <script src="js/smoke/smoke.min.js" type="text/javascript"></script>
     <link id="theme" rel="stylesheet" href="css/themes/dark.css" type="text/css" media="screen" />
-	<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/fonts/Fuentes.css" type="text/css" media="screen" title="default" />  
+<!--    <link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Aguafina+Script' rel='stylesheet' type='text/css'>-->
+
 	
-    <script type="text/javascript">
-        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-        d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-        $.src='//cdn.zopim.com/?190bir6INMNTWbmrwTGUuPc88imSHbVW';z.t=+new Date;$.
-        type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-    </script>
+    <!--Start of Zopim Live Chat Script-->
+        <script src="js/Zopim.js" type="text/javascript"></script>
+    <!--End of Zopim Live Chat Script-->
 
     
     
@@ -35,7 +34,16 @@
 
 	<!-- start logo -->
 	<div id="logo-login" width="156" height="40">
-<!--		<a href="index.php"><img src="images/shared/logo.png" width="156" height="40" alt="" /></a>-->
+            <div>
+                
+                <table>
+                    <tr>
+                        <td id="cabecera1">Merca</td>
+                        <td id="cabecera2">Web</td>
+                    </tr>
+                </table>
+                <!--<b id="cabecera1">Oscar</b> <b id="cabecera2">Oviedo</b></div>-->
+            </div>
 	</div>
 	<!-- end logo -->
 	
@@ -52,27 +60,48 @@
                       <table border="0" cellpadding="0" cellspacing="0">
                           <tr>
                                 <td>
-                                    <label style="font-family: 'Righteous', cursive;" for="user">Usuario:</label>
+                                    <label style="font-family: 'Didact Gothic', sans-serif;" for="user">Usuario:</label>
                                 </td>
                                 <td>
                                     <input type="text" placeholder="Escriba nombre de usuario" required name="user" value="osjavis" id="user" class="login-inp"/>
                                 </td>
                         </tr>
-                            <tr>
-                                <td>
-                                    <label style="font-family: 'Righteous', cursive;" for="pass">Contraseña:</label>
-                                </td>
-                                <td>
-                                    <input type="password" placeholder="Escriba nombre de usuario" required name="pass" value="1234" id="pass" class="login-inp" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><img src="images/icons/cart_icon.png" alt="" width="48" height="48" />								</td>
-                                <td align="right">
-<!--                                <p><input type="submit" name="button" id="button" value="Entrar" class="submit-login"/></p>-->
-                                <p><input class="boton negro redondo" name="button" type="submit" value="Ingresar"></p>
-                              </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <label style="font-family: 'Didact Gothic', sans-serif;" for="pass">Contraseña:</label>
+                            </td>
+                            <td>
+                                <input type="password" placeholder="Escriba nombre de usuario" required name="pass" value="1234" id="pass" class="login-inp" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label style="font-family: 'Didact Gothic', sans-serif;" for="pass">Localidad:</label>
+                            </td>
+                            <td>
+                                <select name="cmbLocalidad[]" class="styledselectLogin">
+                                    <?php 
+                                        include("conecta.php");
+                                        $rs=$db->Execute("select id_localidad, nombre_localidad, id_comuna, nombre_comuna from view_localidades_habilitadas");
+
+                                        for($i=0;$i<$rs->Recordcount();$i++){
+                                            ?>
+                                                <option value="<?php echo $rs->fields[0] ?>"><?php echo $rs->fields[1]." (".$rs->fields[3].")" ?></option>
+                                            <?php
+                                            $rs->Movenext();
+                                        }
+                                        $db->close();                        
+                                    ?>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/icons/cart_icon.png" alt="" width="48" height="48" />								</td>
+                            <td align="right">
+                        <!--                                <p><input type="submit" name="button" id="button" value="Entrar" class="submit-login"/></p>-->
+                            <p><input class="boton negro redondo" name="button" type="submit" value="Ingresar"></p>
+                          </td>
+                        </tr>
                       </table>
                     </p>
                     </form>

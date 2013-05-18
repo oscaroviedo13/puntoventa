@@ -27,6 +27,9 @@ body	{
 	float: left;
 	margin: 45px 0 0 15px;
 	}
+#logoImagen{
+        padding: 20px 0 10px 0;
+        }
 #logo	a	{
 	display: block;
 	}
@@ -343,22 +346,26 @@ a:hover.icon-5	{
 	text-decoration: underline;
 	}
 #product-table	th	{
-	height: 35px;
-	text-align: left;
+	height: 30px;
+	text-align: center;
 	}
 #product-table	.minwidth-1	{
-	min-width: 20px;
+	min-width: 15px;
 	}
 
 #product-table	.minwidth-2	{
 	min-width: 110px;
 	}
 #product-table	.minwidth-option	{
-        min-width: 160px;
+        min-width: 100px;
         }
 #product-table td	{
 	border: 1px solid #d2d2d2;
 	padding: 10px 0 10px 10px;
+	}
+        #product-table th	{
+	border: 1px solid #d2d2d2;
+	/*padding: 3px;*/
 	}
 #product-table tr.alternate-row	{
 	background: #ececec;
@@ -367,6 +374,17 @@ td.options-width	{
 	padding: 0 0 0 10px;
 	width: 115px;
 	}
+th.options-width	{
+        padding: 0 0 0 10px;
+        width: 210px;
+        }
+        
+th.table-header-repeat.line-left.minwidth-2{
+    width: 160px;
+}
+th.table-header-repeat.line-left{
+    width: 80px;
+}
 td.checkbox-width	{
 	}
 .table-header-check	{
@@ -392,7 +410,7 @@ td.checkbox-width	{
 	}
 .table-header-options a,
  .table-header-repeat a	{
-	background: url(../images/table/table_sort_arrow.gif) right no-repeat;
+	/*background: url(../images/table/table_sort_arrow.gif) right no-repeat;*/
 	color: #fff;
 	font-family: Tahoma;
 	font-size: 12px;
@@ -1170,11 +1188,32 @@ form	{
  
 /*  STYLED SELECTBOXES style 1 --------------------------------- */	
 
+.styledselectrequierd {
+        background: #2a2a2a;
+        border: 1px solid #424242;
+	color:#fff;
+	width:200px;
+	padding: 5px;
+	line-height: 14px;
+	margin-right: 6px;
+	font-size: 12px;
+}
+
 .styledselect {
         background: #2a2a2a;
         border: 1px solid #424242;
 	color:#fff;
 	width:200px;
+	padding: 5px;
+	line-height: 14px;
+	margin-right: 6px;
+	font-size: 12px;
+}
+.styledselectLogin {
+        background: #2a2a2a;
+        border: 1px solid #424242;
+	color:#fff;
+	width:220px;
 	padding: 5px;
 	line-height: 14px;
 	margin-right: 6px;
@@ -1197,8 +1236,9 @@ form	{
 background: #2a2a2a;
 border: 1px solid #424242;
 	color:#fff;
-	width:320px;
-	padding: 5px;
+	width:380px;
+	height:100px;
+        padding: 5px;
 	line-height: 14px;
 	margin-right: 6px;
 	font-size: 12px;
@@ -1466,6 +1506,8 @@ label	{
 	position: relative;
 	width: 460px;
         
+        animation: entradamacro 2s;
+        -webkit-animation: entradamacro 2s; /* Safari and Chrome */
         animation: animacion 2s;
         -webkit-animation: animacion 2s; /* Safari and Chrome */
 }	
@@ -1498,8 +1540,25 @@ label	{
 	
 /*  LOGIN -------------------------------------------------------------------------------- */	
 
-#login-bg	{
-	background: url(../images/login/login_bg.jpg) no-repeat top center;
+#login-bg{
+	/*background: url(../images/login/login_bg.jpg) no-repeat top center;*/
+        /* IE10 Consumer Preview */ 
+        background-image: -ms-linear-gradient(top left, #FFFFFF 0%, #737373 100%);
+
+        /* Mozilla Firefox */ 
+        background-image: -moz-linear-gradient(top left, #FFFFFF 0%, #737373 100%);
+
+        /* Opera */ 
+        background-image: -o-linear-gradient(top left, #FFFFFF 0%, #737373 100%);
+
+        /* Webkit (Safari/Chrome 10) */ 
+        background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF), color-stop(1, #737373));
+
+        /* Webkit (Chrome 11+) */ 
+        background-image: -webkit-linear-gradient(top left, #FFFFFF 0%, #737373 100%);
+
+        /* W3C Markup, IE10 Release Preview */ 
+        background-image: linear-gradient(to bottom right, #FFFFFF 0%, #737373 100%);
 	}
 #login-holder	{
 	margin: 0px auto 0 auto;
@@ -1568,6 +1627,8 @@ label	{
 	float: left;
 	height: 35px;
 	margin: 145px 0 0 15px;
+        animation: entradamacro 2s;
+        -webkit-animation: entradamacro 2s; /* Safari and Chrome */
 	}
 a.forgot-pwd	{
 	bottom: 30px;
@@ -1662,13 +1723,23 @@ a:hover.back-login	{
         }
 }
 
-@-webkit-keyframes salida{
+@keyframes entradamacro{
         from{
-                margin-left: 1%;
+                margin-right: 200%;
         }
 
         to{
-                margin-left: 200%;
+                margin-right: 1%;
+        }
+}
+
+@-webkit-keyframes entradamacro{
+        from{
+                margin-right: 200%;
+        }
+
+        to{
+                margin-right: 1%;
         }
 }
 
@@ -1676,7 +1747,7 @@ a:hover.back-login	{
  
 input:required:invalid {
  
-border: 1px solid red;
+    border: 1px solid red;
  
 }
  
@@ -1685,3 +1756,80 @@ border: 1px solid red;
 border: 1px solid green;
  
 }*/
+
+strong{
+    background: black;
+    padding:0 15px;
+    border-radius:10px 10px;
+    color: white;
+    font-size: 15px;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+
+#mensajeError{
+    background: rgb(97, 25, 25);
+    padding:0 15px;
+    border-radius:10px 10px;
+    color:white;
+    display: inline-block;
+    box-shadow:0 0 8px 0 #7e7e7e; 
+    transition:all 0.5s
+    
+    
+}
+
+#cabecera1{
+    font-family: 'Aguafina Script', cursive;
+    color: white;
+    font-size:60px;			
+    text-shadow:0 0 10px black; 
+    
+}
+
+#cabecera2{
+    font-family: 'Aguafina Script', cursive;
+    color: rgb(148, 181, 44);
+    font-size:80px;			
+    text-shadow:0 0 10px white; 
+}
+#cabeceraGenLogo1{
+    font-family: 'Aguafina Script', cursive;
+    color: white;
+    font-size:60px;			
+    text-shadow:0 0 5px rgb(148, 181, 44); 
+}
+
+#cabeceraGenLogo2{
+    font-family: 'Aguafina Script', cursive;
+    color: rgb(148, 181, 44);
+    font-size:65px;			
+    text-shadow:0 0 2px white; 
+}
+#cabeceraGen1{
+    font-family: 'Aguafina Script', cursive;
+    color: white;
+    font-size:20px;			
+    /*text-shadow:0 0 10px rgb(148, 181, 44);*/ 
+}
+
+#cabeceraGen2{
+    font-family: 'Aguafina Script', cursive;
+    color: rgb(148, 181, 44);
+    font-size:30px;			
+    /*text-shadow:0 0 10px #acacac;*/ 
+}
+
+#cabeceraLocalidad1{
+    font-family: 'Roboto Slab', serif;
+    color: black;
+    font-size:20px;			
+    /*text-shadow:0 0 10px rgb(148, 181, 44);*/ 
+}
+
+#cabeceraLocalidad2{
+    font-family: 'Roboto Slab', serif;
+    color: rgb(148, 181, 44);
+    font-size:20px;			
+    /*text-shadow:0 0 10px #acacac;*/ 
+}

@@ -10,12 +10,12 @@
         
         <?php 
             
-            include ('../conexion.php');
+            include ('../funciones.php');
+    
         
             $id=$_POST['id3'];
+            $id_pro_localidad=$_POST['id_pro_localidad'];
             $nombre=$_POST['nombre3'];
-            $precio=$_POST['precio3'];
-            $stock=$_POST['stock3'];
             $iva=$_POST['iva3'];
             $desc=$_POST['desc3'];
             $descripcion_tipo_proArray=$_POST['descripcion_tipo_pro3'];
@@ -43,11 +43,10 @@
                 move_uploaded_file($rutaTemporal,"../".$rutaDestino);
             }else{
                 //echo 'no intento cambiar la imagen';
-                $recuperoArray=EncotrarReg($id);
-                $rutaDestino=$recuperoArray['imagen'];
+                $rutaDestino=EncotrarRutaImagen($id);
             }
 
-            $a= modificarProducto($id,$nombre,$desc,$precio,$rutaDestino,$iva,$stock,$descripcion_tipo_pro, $id_unidad);	
+            $a= modificarProducto($id,$nombre,$desc,$descripcion_tipo_pro, $id_unidad, $iva,$rutaDestino,$id_pro_localidad);	
 
         if($a != 1){
         ?>

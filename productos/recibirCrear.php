@@ -8,7 +8,10 @@
     </head>
     <body>
         
-<?php include ('../conexion.php');
+<?php 
+
+include ('../funciones.php');
+    
 
 $nombre=$_POST['nombre3'];
 $precio=$_POST['precio3'];
@@ -33,20 +36,8 @@ $rutaEnServidor='imagenes';
 $rutaTemporal=$_FILES['imagen2']['tmp_name'];
 $nombreImagen=$_FILES['imagen2']['name'];
 $rutaDestino=$rutaEnServidor.'/'.$nombreImagen;
-//echo 'ruta temporal :'.$rutaTemporal.'<br>';
-//echo 'ruta Destino :'.$rutaDestino.'<br>';
 move_uploaded_file($rutaTemporal,'../'.$rutaDestino);
 
-//if ($_FILES['imagen2']['name']<>""){
-//    //echo 'intento cambiar la imagen';
-////    move_uploaded_file($rutaTemporal,"../".$rutaDestino);
-//    $a= grabarCambios($id,$nombre,$desc,$precio,$existencia,$rutaDestino,$fecha,$descripcion_tipo_pro);	
-//}else{
-//    //echo 'no intento cambiar la imagen';
-////    $recuperoArray=EncotrarReg($id);
-//    $rutaDestino=$recuperoArray['imagen'];
-//    //$a=grabarCambios($id,$nombre,$desc,$precio,$existencia,$rutaDestino,$fecha,$descripcion_tipo_pro);
-//}
 
 $a= crearProducto($rutaDestino,$nombre,$desc,$precio,$descripcion_tipo_pro,$iva,$id_unidad,$stock);
 

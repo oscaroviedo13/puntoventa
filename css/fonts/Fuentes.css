@@ -1,0 +1,42 @@
+/* 
+    Document   : Fuentes
+    Created on : 16/05/2013, 03:20:28 PM
+    Author     : osarmiento
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+@font-face {
+  font-family: 'Aguafina Script';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Aguafina Script Regular'), local('AguafinaScript-Regular'), url(Aguafina.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(RobotoSlab.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Righteous';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Righteous'), local('Righteous-Regular'), url(Righteous.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Oldenburg';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oldenburg'), local('Oldenburg-Regular'), url(Oldenburg.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Didact Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Didact Gothic'), local('DidactGothic'), url(DidactGothic.woff) format('woff');
+}

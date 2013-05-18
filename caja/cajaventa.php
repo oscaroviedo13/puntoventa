@@ -1,61 +1,106 @@
+<?php 
+
+    session_start();
+    
+    $localidad_designada = $_SESSION['miSession']['localidad_designada'];
+    
+    
+?>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <title>Caja</title>
+        
     <script language="Javascript">
     function abrir(pagina) {
             window.open(pagina,'window','params');
     }
     </script>
     
-    
-    <style>
-		.inferior{
-			-moz-border-radius: 50px;
-			-webkit-border-radius: 50px;
-			border-radius: 50px;
-			/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
-			-moz-box-shadow: 0px 0px 20px #000000;
-			-webkit-box-shadow: 0px 0px 20px #000000;
-			box-shadow: 0px 0px 20px #000000;
-			/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
-			opacity: 0.53;
-			-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity = 53);
-			/*-ms-filter must come before filter*/
-			filter: alpha(opacity = 53);
-			/*INNER ELEMENTS MUST NOT BREAK THIS ELEMENTS BOUNDARIES*/
-			/*All filters must be placed together*/
-
-		}
-	
-	</style>
-    
-    
+       
         
     <link href="../css/caja/395758.css" type="text/css" rel="stylesheet" />
+    <!--<link rel="stylesheet" href="../css/estilo.css" type="text/css" media="screen" title="default" />-->  
+    <link rel="stylesheet" href="../css/caja/Grid.css" type="text/css" media="screen" title="default" />  
+    
+    <!--<link href='http://fonts.googleapis.com/css?family=Aguafina+Script' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" href="../css/fonts/Fuentes.css" type="text/css" media="screen" title="default" />  
+    
 </head>    
     <body>
     <div id="wrapper">
         <div id="headerwrap">
         <div id="header">
-            <p>This is the Header</p>
+            <div id="logo" style="margin:0 auto; position: relative;">
+                        <img id="logoImagen" src="../images/icons/cart_icon.png" width="40" height="40" alt="" />	
+                    </div>
+                <div id="tablaImagen">
+                <table>
+                            <tr>
+                                <td id="cabeceraGenLogo1">Merca</td>
+                                <td id="cabeceraGenLogo2">Venta</td>
+                            </tr>
+                            
+                        </table>                    
+                    </div>
+            
         </div>
         </div>
         <div id="navigationwrap">
         <div id="navigation">
-            <p>This is the Menu</p>
+<!--            <p>This is the Menu</p>-->
+            <label>sdsada</label>
         </div>
         </div>
-        <div id="contentliquid"><div id="contentwrap">
-        <div id="content">
-           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. </p><p>Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. </p><p>Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor. Integer id quam. </p>
+        <div id="contentliquid">
+            <div id="contentwrap">
+                <div id="content" >
+                    <table border="1" id="Ventana" align="center" cellspacing="0">
+                            <tr>
+                                <th class="Etiquetas_centro">Id</th>
+                                <th class="Etiquetas_centro">Producto</th>
+                                <th class="Etiquetas_centro">Cantidad</th>
+                                <th class="Etiquetas_centro">Unidad</th>
+                                <th class="Etiquetas_centro">Precio Bruto</th>
+                                <th class="Etiquetas_centro">Iva</th>
+                                <th class="Etiquetas_centro">Precio Unidad</th>
+                                <th class="Etiquetas_centro">Precio Total</th>
+                            </tr>
+
+                              <tr onmouseover="this.className='normalActive'" onmouseout="this.className='normal'" class="normal">                    
+                                    <td align="center" class="capaazul">1</td>
+                                    <td align="center" class="capaverde">Leche Klim</td>
+                                    <td align="center" class="capaverde">2</td>
+                                    <td align="center" class="capaverde">gr</td>
+                                    <td align="center" class="capaverde">14600</td>
+                                    <td align="center" class="capaverde">12</td>
+                                    <td align="center" class="capaverde">17500</td>
+                                    <td align="center" class="capaverde">40200</td>
+                                </tr>
+                         <tr>                    
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                         <tr>                    
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+
+                        </table>
+                </div>
+            </div>
         </div>
-        </div></div>
+        
         <div id="rightcolumnwrap">
-        <div id="rightcolumn" class="inferior">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.</p>
+        <div id="rightcolumn">
+            <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.</p>-->
+            <input type="text" />
         </div>
         </div>
         <div id="footerwrap">

@@ -1,12 +1,34 @@
 <?php 
-session_start();
-$NombreMenu = "Seleccione la opcion deseada.";
+    session_start();
 
-if(!isset($_SESSION["contadorSession"])){
-    ?>
-    <meta http-equiv="refresh" content="1; url= ../boton.html">  
-    <?php
-}else{
+    include ('../conecta.php');
+
+    $NombreMenu = "";
+
+    
+
+
+    if(!isset($_SESSION["contadorSession"])){
+        ?>
+        <meta http-equiv="refresh" content="1; url= ../usuarios/falloInicioSesion.php">  
+        <?php
+    }else{
+        $rs=$db->Execute("SELECT 
+        localidad.id_localidad,  
+        localidad.nombre_localidad,  
+        comuna.id_comuna,  
+        comuna.nombre_comuna 
+        FROM  
+        localidad  
+        INNER JOIN comuna ON (localidad.id_comuna = comuna.id_comuna) 
+        WHERE 
+        localidad.id_localidad = ".$_SESSION['miSession']['localidad_designada']);
+
+        for($i=0;$i<$rs->Recordcount();$i++){
+            $NombreMenu = $rs->fields[1]." (".$rs->fields[3].").";
+            $rs->Movenext();
+        }
+        $db->close();   
 ?>
 
 <!DOCTYPE html>
@@ -16,183 +38,23 @@ if(!isset($_SESSION["contadorSession"])){
         <link href="../Swf.ico" type="image/x-icon" rel="shortcut icon" />
         <title>Punto de Venta.</title>
         <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default" />
-        <!--[if IE]>
-        <link rel="stylesheet" media="all" type="text/css" href="css/pro_dropline_ie.css" />
-        <![endif]-->
-
+        <link rel="stylesheet" href="../css/fonts/Fuentes.css" type="text/css" media="screen" title="default" />  
+        <!--<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>-->
+        <!--<link href='http://fonts.googleapis.com/css?family=Aguafina+Script' rel='stylesheet' type='text/css'>-->
+        <!--<link href='http://fonts.googleapis.com/css?family=Oldenburg' rel='stylesheet' type='text/css'>-->
+        <!--<link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>-->
+       
+        
         <!--  jquery core -->
         <script src="../js/jquery/jquery-1.4.1.min.js" type="text/javascript"></script>
-
-        <!--Start of Zopim Live Chat Script-->
-        <script type="text/javascript">
-        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-        d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-        $.src='//cdn.zopim.com/?190bir6INMNTWbmrwTGUuPc88imSHbVW';z.t=+new Date;$.
-        type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-        </script>
-
-
-        <!--End of Zopim Live Chat Script-->
-
-        <!--  checkbox styling script -->
-        <script src="../js/jquery/ui.core.js" type="text/javascript"></script>
-        <script src="../js/jquery/ui.checkbox.js" type="text/javascript"></script>
-        <script src="../js/jquery/jquery.bind.js" type="text/javascript"></script>
-        <script type="text/javascript">
-        $(function(){
-                $('input').checkBox();
-                $('#toggle-all').click(function(){
-                $('#toggle-all').toggleClass('toggle-checked');
-                $('#mainform input[type=checkbox]').checkBox('toggle');
-                return false;
-                });
-        });
-        </script>  
-
-        <![if !IE 7]>
-
-        <!--  styled select box script version 1 -->
-        <script src="../js/jquery/jquery.selectbox-0.5.js" type="text/javascript"></script>
-        <script type="text/javascript">
-        $(document).ready(function() {
-                $('.styledselect').selectbox({ inputClass: "selectbox_styled" });
-        });
-        </script>
-
-
-        <![endif]>
-
-        <!--  styled select box script version 2 --> 
-        <script src="../js/jquery/jquery.selectbox-0.5_style_2.js" type="text/javascript"></script>
-        <script type="text/javascript">
-        $(document).ready(function() {
-                $('.styledselect_form_1').selectbox({ inputClass: "styledselect_form_1" });
-                $('.styledselect_form_2').selectbox({ inputClass: "styledselect_form_2" });
-        });
-        </script>
-
-        <!--  styled select box script version 3 --> 
-        <script src="../js/jquery/jquery.selectbox-0.5_style_2.js" type="text/javascript"></script>
-        <script type="text/javascript">
-        $(document).ready(function() {
-                $('.styledselect_pages').selectbox({ inputClass: "styledselect_pages" });
-        });
-        </script>
-
-        <!--  styled file upload script --> 
-        <script src="../js/jquery/jquery.filestyle.js" type="text/javascript"></script>
-        <script type="text/javascript" charset="utf-8">
-          $(function() {
-              $("input.file_1").filestyle({ 
-                  image: "images/forms/choose-file.gif",
-                  imageheight : 21,
-                  imagewidth : 78,
-                  width : 310
-              });
-          });
-        </script>
 
         <!-- Custom jquery scripts -->
         <script src="../js/jquery/custom_jquery.js" type="text/javascript"></script>
 
-        <!-- Tooltips -->
-        <script src="../js/jquery/jquery.tooltip.js" type="text/javascript"></script>
-        <script src="../js/jquery/jquery.dimensions.js" type="text/javascript"></script>
-        <script type="text/javascript">
-        $(function() {
-                $('a.info-tooltip ').tooltip({
-                        track: true,
-                        delay: 0,
-                        fixPNG: true, 
-                        showURL: false,
-                        showBody: " - ",
-                        top: -35,
-                        left: 5
-                });
-        });
-        </script> 
-
-
-        <!--  date picker script -->
-        <link rel="stylesheet" href="../css/datePicker.css" type="text/css" />
-        <script src="../js/jquery/date.js" type="text/javascript"></script>
-        <script src="../js/jquery/jquery.datePicker.js" type="text/javascript"></script>
-        <script type="text/javascript" charset="utf-8">
-                $(function()
-        {
-
-        // initialise the "Select date" link
-        $('#date-pick')
-                .datePicker(
-                        // associate the link with a date picker
-                        {
-                                createButton:false,
-                                startDate:'01/01/2005',
-                                endDate:'31/12/2020'
-                        }
-                ).bind(
-                        // when the link is clicked display the date picker
-                        'click',
-                        function()
-                        {
-                                updateSelects($(this).dpGetSelected()[0]);
-                                $(this).dpDisplay();
-                                return false;
-                        }
-                ).bind(
-                        // when a date is selected update the SELECTs
-                        'dateSelected',
-                        function(e, selectedDate, $td, state)
-                        {
-                                updateSelects(selectedDate);
-                        }
-                ).bind(
-                        'dpClosed',
-                        function(e, selected)
-                        {
-                                updateSelects(selected[0]);
-                        }
-                );
-
-        var updateSelects = function (selectedDate)
-        {
-                var selectedDate = new Date(selectedDate);
-                $('#d option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
-                $('#m option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
-                $('#y option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
-        }
-        // listen for when the selects are changed and update the picker
-        $('#d, #m, #y')
-                .bind(
-                        'change',
-                        function()
-                        {
-                                var d = new Date(
-                                                        $('#y').val(),
-                                                        $('#m').val()-1,
-                                                        $('#d').val()
-                                                );
-                                $('#date-pick').dpSetSelected(d.asString());
-                        }
-                );
-
-        // default the position of the selects to today
-        var today = new Date();
-        updateSelects(today.getTime());
-
-        // and update the datePicker to reflect it...
-        $('#d').trigger('change');
-        });
-        </script>
-
-        <!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
-        <script src="../js/jquery/jquery.pngFix.pack.js" type="text/javascript"></script>
-        <script type="text/javascript">
-        $(document).ready(function(){
-        $(document).pngFix( );
-        });
-        </script>
+        <!--Start of Zopim Live Chat Script-->
+        <script src="../js/Zopim.js" type="text/javascript"></script>
+        <!--End of Zopim Live Chat Script-->
+       
 
         <script language="Javascript">
         function abrir(pagina) {
@@ -210,29 +72,25 @@ if(!isset($_SESSION["contadorSession"])){
             <div id="page-top">
 
                     <!-- start logo -->
+                    <div id="logo" style="margin:0 auto; position: relative;">
+                        <img id="logoImagen" src="../images/icons/cart_icon.png" width="40" height="40" alt="" />	
+                    </div>
                     <div id="logo">
-                    <a href=""><img src="../images/icons/cart_icon.png" width="40" height="40" alt="" /></a>	</div>
+                        <table>
+                            <tr>
+                                <td id="cabeceraGenLogo1">Merca</td>
+                                <td id="cabeceraGenLogo2">Web</td>
+                            </tr>
+                            
+                        </table>                    
+                    </div>
                     <!-- end logo -->
 
                     <!--  start top-search -->
                     <div id="top-search">
-                            <table border="0" cellpadding="0" cellspacing="0">
-                            <tr>
-                            <td><input type="text" value="Search" onBlur="if (this.value=='') { this.value='Search'; }" onFocus="if (this.value=='Search') { this.value=''; }" class="top-search-inp" /></td>
-                            <td>
-                            <select  class="styledselect">
-                                    <option value=""> All</option>
-                                    <option value=""> Products</option>
-                                    <option value=""> Categories</option>
-                                    <option value="">Clients</option>
-                                    <option value="">News</option>
-                            </select> 
-                            </td>
-                            <td>
-                            <input type="image" src="../images/shared/top_search_btn.gif"  />
-                            </td>
-                            </tr>
-                            </table>
+                                    <h1 id="cabeceraGen2"><?php echo $_SESSION['miSession']['nombre']." ".$_SESSION['miSession']['apellido'] ?></h1>
+                                    <h1 id="cabeceraGen1"><?php echo $_SESSION['miSession']['descripcion_perfil'] ?></h1>
+                                    
                     </div>
                     <!--  end top-search -->
                     <div class="clear"></div>
@@ -250,8 +108,6 @@ if(!isset($_SESSION["contadorSession"])){
             <div class="nav-outer-repeat"> 
             <!--  start nav-outer -->
             <div class="nav-outer"> 
-
-
                             <!-- start nav-right -->
                             <div id="nav-right">
                                     <div class="nav-divider">&nbsp;</div>
@@ -306,11 +162,11 @@ if(!isset($_SESSION["contadorSession"])){
 
                             <div class="nav-divider">&nbsp;</div>
 
-                            <ul class="current"><li><a href="#nogo"><b>Caja</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                            <ul class="current"><li><a href="#nogo"><b>Facturacion</b><!--[if IE 7]><!--></a><!--<![endif]-->
                             <!--[if lte IE 6]><table><tr><td><![endif]-->
                             <div class="select_sub show">
                                     <ul class="sub">
-                                        <li class="sub_show"><a href="../caja/cajaventa.php" onClick="abrir(this.href);return false">Cargar caja</a></li>
+                                        <li class="sub_show"><a href="../caja/cajaventa.php" onClick="abrir(this.href);return false">Cargar Caja</a></li>
                                         <li><a href="#nogo">Imprimir Factura.</a></li>
                                         <!--<li><a href="#nogo">Delete products</a></li>-->
                                     </ul>
@@ -336,14 +192,15 @@ if(!isset($_SESSION["contadorSession"])){
 
                             <div class="nav-divider">&nbsp;</div>
 
-                            <ul class="select"><li><a href="#nogo"><b>Maestros</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                            <ul class="select"><li><a href="#"><b>Descuentos</b><!--[if IE 7]><!--></a><!--<![endif]-->
                             <!--[if lte IE 6]><table><tr><td><![endif]-->
                             <div class="select_sub">
                                     <ul class="sub">
-                                            <li><a href="#nogo">Tipo Producto.</a></li>
-                                            <li><a href="#nogo">Clients Details 2</a></li>
-                                            <li><a href="#nogo">Clients Details 3</a></li>
-
+                                            <li><a href="../Descuentos/crearDescuentoTipoProducto.php" target="CONTENIDO">Crear Descuentos Tipo Producto</a></li>
+                                            <li><a href="../Descuentos/administracionDescuentoTipoProducto.php" target="CONTENIDO">Administrar Descuentos Tipo Producto</a></li>
+                                            <li><a href="../Descuentos/crearDescuentoLocalidad.php" target="CONTENIDO">Crear Descuentos Localidad</a></li>
+                                            <li><a href="../Descuentos/administracionDescuentoLocalidad.php" target="CONTENIDO">Administrar Descuentos Localidad</a></li>
+                                       
                                     </ul>
                             </div>
                             <!--[if lte IE 6]></td></tr></table></a><![endif]-->
@@ -380,9 +237,9 @@ if(!isset($_SESSION["contadorSession"])){
                             </li>
                             </ul>
 
-                            <div class="clear"></div>
+                            <!--<div class="clear"></div>-->
                             </div>
-                            <div class="clear"></div>
+                            <!--<div class="clear"></div>-->
                             </div>
                             <!--  start nav -->
 
@@ -402,7 +259,12 @@ if(!isset($_SESSION["contadorSession"])){
 
                 <!--  start page-heading -->
                 <div id="page-heading">
-                        <h1><?php echo $NombreMenu ?></h1>
+                     <table>
+                        <tr>
+                            <td id="cabeceraLocalidad1">Localidad: </td>
+                            <td id="cabeceraLocalidad2"><?php echo $NombreMenu ?></td>
+                        </tr>
+                    </table>  
                 </div>
 
                 <iframe src="../galeria.php" name="CONTENIDO" width="100%" height="600"  scrolling="auto" frameborder="0"  />
